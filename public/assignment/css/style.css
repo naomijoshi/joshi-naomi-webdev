@@ -3,12 +3,18 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 50px;
 }
 .navbar-default {
     background-color: #337ab7;
     border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.navbar-default .navbar-link {
+    color: #ffffff;
+}
+.navbar-default .navbar-text {
     color: #ffffff;
 }
