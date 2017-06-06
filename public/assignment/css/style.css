@@ -3,7 +3,7 @@ input.form-control {
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 60px;
 }
 .navbar-default {
     background-color: #337ab7;
@@ -12,9 +12,7 @@ body {
 .navbar-default .navbar-brand {
     color: #ffffff;
 }
-.navbar-default .navbar-link {
-    color: #ffffff;
-}
-.navbar-default .navbar-text {
-    color: #ffffff;
+
+.list-group-item{
+    border: none;
 }
