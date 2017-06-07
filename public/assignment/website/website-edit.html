@@ -2,31 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
     <title>Website Edit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
     <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a href="website-list.html" class="navbar-brand">
-            <span class="glyphicon glyphicon-chevron-left">
-            </span>
-        </a>
-        <a class="navbar-brand" href="#">
-            Edit Website
-        </a>
-        <a href="website-list.html" class="navbar-brand pull-right">
-              <span class="glyphicon glyphicon-ok">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 visible-lg visible-md visible-sm">
+                <a href="website-list.html" class="navbar-brand">
+                <span class="glyphicon glyphicon-chevron-left">
+                </span>
+                </a>
+                <a class="navbar-brand" href="#">
+                    Websites
+                </a>
+                <a href="website-new.html" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-plus">
               </span>
-        </a>
+                </a>
+            </div>
+            <div class="col-xs-12 hidden-md hidden-lg hidden-sm">
+                <a href="website-list.html" class="navbar-brand">
+                <span class="glyphicon glyphicon-chevron-left">
+                </span>
+                </a>
+                <a class="navbar-brand" href="#">
+                    Edit Website
+                </a>
+                <a href="website-list.html" class="navbar-brand pull-right">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-8 visible-lg visible-md visible-sm">
+                <a class="navbar-brand" href="#">
+                    Edit Website
+                </a>
+                <a href="website-list.html" class="navbar-brand pull-right">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
 
 
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 visible-lg visible-md">
+        <div class="col-md-4 col-sm-4 visible-lg visible-md visible-sm full-page border">
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row">
@@ -87,7 +116,7 @@
             </ul>
 
         </div>
-        <div class="col-md-8 col-sm-12 col-xs-12" >
+        <div class="col-md-8 col-sm-8 col-xs-12 custom-pad" >
             <form>
                 <div class="form-group">
                     <label for="name">Name</label>

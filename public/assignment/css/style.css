@@ -3,7 +3,7 @@ input.form-control {
 }
 
 body {
-    padding-top: 60px;
+    padding-top: 50px;
 }
 .navbar-default {
     background-color: #337ab7;
@@ -22,4 +22,22 @@ body {
 
 .list-group-item{
     border: none;
+}
+
+.cog{
+    padding-right: 18px;
+}
+.border {
+    border-right: 1px solid darkgrey;
+    /*float: none;*/
+    /*display: table-cell;*/
+    /*border: 1px solid;*/
+
+}
+
+.full-page{
+    height:90vh;
+}
+.custom-pad {
+    padding-top: 10px;
 }
