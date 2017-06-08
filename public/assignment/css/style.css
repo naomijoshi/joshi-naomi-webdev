@@ -17,11 +17,13 @@ body {
     margin-top:0px;
     margin-bottom: 0px;
 }
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand,.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:active,.navbar-default .navbar-brand:focus  {
     color: #ffffff;
+    text-decoration: none;
 }
 .navbar-nav .navbar-brand {
     color: #383838;
+    /*text-decoration: none;*/
 }
 
 .list-group-item{
