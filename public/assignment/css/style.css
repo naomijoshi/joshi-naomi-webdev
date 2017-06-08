@@ -4,6 +4,7 @@ input.form-control {
 
 body {
     padding-top: 50px;
+    padding-bottom: 60px;
 }
 .navbar-default {
     background-color: #337ab7;
@@ -43,4 +44,19 @@ body {
 }
 .custom-pad {
     padding-top: 10px;
+}
+.custom-widget{
+    position: relative;
+    margin-top: 20px;
+}
+.custom-toolbar{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    opacity: 0.7;
+    border-bottom-left-radius: 10px;
+    background: white;
+    padding-left: 5px;
+    padding-bottom: 3px;
+    z-index: 1000;
 }
