@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
-    <title>Profile</title>
-    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -26,7 +15,7 @@
         <form class="custom-pad">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" value="naomijoshi" disabled>
+                <input type="text" class="form-control" id="username" ng-model="model.user.username" disabled>
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -34,18 +23,18 @@
             </div>
             <div class="form-group">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" value="Alice" placeholder="firstname">
+                <input type="text" class="form-control" id="firstname" ng-model="model.user.firstName" placeholder="firstname">
             </div>
             <div class="form-group">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" value="Wonderland" placeholder="lastname">
+                <input type="text" class="form-control" id="lastname" ng-model="model.user.lastName" placeholder="lastname">
             </div>
         </form>
 
         <a class="btn btn-primary btn-block"
-           href="../website/website-list.html">Websites</a>
+           href="../../website/website-list.html">Websites</a>
         <a class="btn btn-danger  btn-block"
-           href="login.html">Logout</a>
+           href="login.view.client.html">Logout</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -56,6 +45,3 @@
         </a>
     </div>
 </nav>
-
-</body>
-</html>

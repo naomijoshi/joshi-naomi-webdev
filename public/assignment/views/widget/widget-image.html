@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
     <title>Widget Edit</title>
-    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 <nav class="navbar navbar-nav navbar-fixed-top">
@@ -39,13 +39,20 @@
                 </div>
                 <div class="form-group">
                     <label for="url">URL</label>
-                    <input type="text" class="form-control" id="url" value="https://youtu.be/q7QDJBMIL7s">
+                    <input type="text" class="form-control" id="url" value="https://goo.gl/images/B5PylF">
                 </div>
                 <div class="form-group">
                     <label for="size">Width</label>
-                    <input type="text" class="form-control" id="size">
+                    <input type="text" class="form-control" id="size" value="100%">
+                </div>
+                <div class="form-group">
+                    <label for="file">Upload</label>
+                    <input type="file" class="form-control" id="file" value="100%">
                 </div>
             </form>
+            <a href="widget-list.html" class="btn btn-primary btn-block">
+                Upload Image
+            </a>
             <a href="widget-list.html" class="btn btn-danger btn-block">
                 Delete
             </a>
@@ -55,7 +62,7 @@
 
 <nav class="navbar navbar-nav navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="../user/profile.html" class="navbar-brand pull-right">
+        <a href="../user/templates/profile.view.client.html" class="navbar-brand pull-right">
               <span class="glyphicon glyphicon-user">
               </span>
         </a>
