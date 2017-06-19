@@ -11,9 +11,13 @@
         var model = this;
         model.register = function (username,password,verifyPassword) {
 
+            if(!username || !password || !verifyPassword) {
+                model.message = "Username,password cannot be blank";
+                return;
+            }
             var user = userService.findUserByUsername(username);
             if (user){
-                model.message = "Username already exists. Please choose another"
+                model.message = "Username already exists. Please choose another";
             } else {
                 if (password === verifyPassword){
                     var user = {

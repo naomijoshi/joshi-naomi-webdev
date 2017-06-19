@@ -31,10 +31,8 @@
         }
 
         function createUser(user) {
-            user["_id"] = new Date().getDate().toString();
-            console.log("user coming from frontend",user);
+            user["_id"] = new Date().getMilliseconds().toString();
             users.push(user);
-            console.log("users list",users)
             return user;
         }
         

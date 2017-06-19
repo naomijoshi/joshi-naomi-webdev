@@ -11,5 +11,11 @@
         var model = this;
         var userId = $routeParams.userId;
         model.user = userService.findUserById(userId);
+
+        model.update = function (user) {
+            if (user){
+                userService.updateUser(user._id, user);
+            }
+        }
     }
 })()

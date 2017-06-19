@@ -1,0 +1,91 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 visible-lg visible-md visible-sm">
+                <a href="#!user/{{model.userId}}/website" class="navbar-brand">
+                <span class="glyphicon glyphicon-chevron-left">
+                </span>
+                </a>
+                <a class="navbar-brand" href="#">
+                    Websites
+                </a>
+                <a href="#" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-plus">
+              </span>
+                </a>
+            </div>
+            <div class="col-xs-12 hidden-md hidden-lg hidden-sm">
+                <a href="#!user/{{model.userId}}/website" class="navbar-brand">
+                <span class="glyphicon glyphicon-chevron-left">
+                </span>
+                </a>
+                <a class="navbar-brand" href="#">
+                    New Website
+                </a>
+                <a href="#!user/{{model.userId}}/website" class="navbar-brand pull-right">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-8 visible-lg visible-md visible-sm">
+                <a class="navbar-brand" href="#">
+                    New Website
+                </a>
+                <a href="#!user/{{model.userId}}/website" class="navbar-brand pull-right">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 visible-lg visible-md visible-sm full-page border">
+            <ul class="list-group">
+                <li ng-repeat="website in model.websites" class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-9">
+                            <a href="#!user/{{model.userId}}/website/{{website._id}}/page">
+                                {{website.name}}
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xs-3">
+                            <a href="#!user/{{model.userId}}/website/{{website._id}}">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12 custom-pad">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="website.name">
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea rows="5" class="form-control" id="desc" placeholder="Description" ng-model="website.description"></textarea>
+                </div>
+            </form>
+            <a ng-click="model.createWebsite(website)" class="btn btn-success btn-block">
+                Create
+            </a>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="#!/user/{{model.userId}}" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-user">
+              </span>
+        </a>
+    </div>
+</nav>
