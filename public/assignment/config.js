@@ -56,6 +56,11 @@
                 controller : "pageEditController",
                 controllerAs: "model"
             })
+            .when('/user/:userId/website/:wid/page/:pid/widget' , {
+                templateUrl : "views/widget/templates/widget-list.view.client.html",
+                controller : "widgetListController",
+                controllerAs: "model"
+            })
 
     }
 

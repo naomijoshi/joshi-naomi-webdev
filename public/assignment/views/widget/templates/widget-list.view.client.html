@@ -1,0 +1,62 @@
+<nav class="navbar navbar-nav navbar-fixed-top">
+    <div class="container-fluid">
+        <a href="#!user/{{model.userId}}/website/{{model.wid}}/page" class="navbar-brand">
+            <span class="glyphicon glyphicon-chevron-left">
+            </span>
+        </a>
+        <a class="navbar-brand" href="#">
+            Widgets
+        </a>
+        <a href="#!user/{{model.userId}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-plus">
+              </span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-repeat="widget in model.widgets" class="custom-widget">
+        <div class="custom-toolbar">
+            <a href="widget-heading.view.client.html">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </div>
+        <!--<h1>GIZMODO</h1>-->
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADING" ng-switch="widget.size">
+                <div ng-switch-when="1">
+                    <h1>{{widget.text}}</h1>
+                </div>
+                <div ng-switch-when="2">
+                    <h2>{{widget.text}}</h2>
+                </div>
+                <div ng-switch-when="3">
+                    <h3>{{widget.text}}</h3>
+                </div>
+                <div ng-switch-when="4">
+                    <h4>{{widget.text}}</h4>
+                </div>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <img ng-src="{{widget.url}}" width="{{widget.width}}"/>
+            </div>
+            <div ng-switch-when="HTML" ng-bind-html="model.trustThisContent(widget.text)">
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" width="100%" height="100%" src="{{model.getYoutubeLink(widget.url)}}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-nav navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="#!user/{{model.userId}}" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-user">
+              </span>
+        </a>
+    </div>
+</nav>
