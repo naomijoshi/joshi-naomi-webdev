@@ -41,35 +41,36 @@
             return resultSet;
         }
 
-        function createPage(page) {
-            page["_id"] = new Date().getMilliseconds().toString();
-            pages.push(page);
-            return page;
+        function createWidget(widget) {
+            widget["_id"] = new Date().getMilliseconds().toString();
+            widgets.push(widget);
+            console.log(widgets);
+            return widget;
         }
 
-        function updatePage(pageId, page) {
-            var pageToUpdate = pages.find(function (page) {
-                return page._id === pageId;
+        function updateWidget(widgetId, widget) {
+            var widgetToUpdate = widgets.find(function (widget) {
+                return widget._id === widgetId;
             });
-            page["_id"] = pageToUpdate._id;
-            var index = pages.indexOf(pageToUpdate);
-            pages[index] = page;
+            widget["_id"] = widgetToUpdate._id;
+            var index = widgets.indexOf(widgetToUpdate);
+            widgets[index] = widget;
         }
 
-        function deletePage(pageId) {
-            var page = pages.find(function (page) {
-                return page._id === pageId;
+        function deleteWidget(widgetId) {
+            var widget = widgets.find(function (widget) {
+                return widget._id === widgetId;
             });
-            var index = pages.indexOf(page);
-            pages.splice(index,1);
+            var index = widgets.indexOf(widget);
+            widgets.splice(index,1);
         }
 
         return api = {
-            createPage : createPage,
+            createWidget : createWidget,
             findWidgetByPageId : findWidgetByPageId,
             findWidgetById:findWidgetById,
-            deletePage:deletePage,
-            updatePage:updatePage
+            deleteWidget:deleteWidget,
+            updateWidget:updateWidget
         };
     }
 })();

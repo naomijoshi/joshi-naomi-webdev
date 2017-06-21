@@ -4,29 +4,35 @@
 (function () {
     angular
         .module('WAM')
-        .controller('pageEditController', pageEditController);
+        .controller('widgetEditController', widgetEditController);
 
-    function pageEditController($location, pageService, $routeParams) {
+    function widgetEditController($location, widgetService, $routeParams) {
 
         var model = this;
         model.userId = $routeParams["userId"];
         model.wid = $routeParams["wid"];
         model.pid = $routeParams["pid"];
-        model.page = pageService.findPageById(model.pid);
-        model.pages = pageService.findPageByWebsiteId(model.wid);
-        model.updatePage = function (page) {
-            if(page){
-                page["websiteId"] = model.wid;
-                pageService.updatePage(page._id,page);
-                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
+        model.wgid = $routeParams["wgid"];
+        model.widget = widgetService.findWidgetById(model.wgid);
+        model.widgets = widgetService.findWidgetByPageId(model.pid);
+        model.updateWidget = function (widget) {
+            if(widget){
+                // widget["websiteId"] = model.wid;
+                console.log(widget);
+                widgetService.updateWidget(widget._id,widget);
+                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
             }
         }
 
-        model.deletePage = function (pageId) {
-            if (pageId) {
-                pageService.deletePage(pageId);
-                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
+        model.deleteWidget = function (widgetId) {
+            if (widgetId) {
+                widgetService.deleteWidget(widgetId);
+                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
             }
+        }
+
+        model.getWidgetEditUrl = function(type){
+            return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
         }
     }
 })();

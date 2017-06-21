@@ -17,36 +17,22 @@
 <div class="container-fluid">
     <div ng-repeat="widget in model.widgets" class="custom-widget">
         <div class="custom-toolbar">
-            <a href="widget-heading.view.client.html">
+            <a href="#!user/{{model.userId}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-        <!--<h1>GIZMODO</h1>-->
         <div ng-switch="widget.widgetType">
-            <div ng-switch-when="HEADING" ng-switch="widget.size">
-                <div ng-switch-when="1">
-                    <h1>{{widget.text}}</h1>
-                </div>
-                <div ng-switch-when="2">
-                    <h2>{{widget.text}}</h2>
-                </div>
-                <div ng-switch-when="3">
-                    <h3>{{widget.text}}</h3>
-                </div>
-                <div ng-switch-when="4">
-                    <h4>{{widget.text}}</h4>
-                </div>
+            <div ng-switch-when="HEADING">
+                <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
             </div>
             <div ng-switch-when="IMAGE">
-                <img ng-src="{{widget.url}}" width="{{widget.width}}"/>
+                <div ng-include="'views/widget/templates/widget-image.view.client.html'"></div>
             </div>
             <div ng-switch-when="HTML" ng-bind-html="model.trustThisContent(widget.text)">
             </div>
             <div ng-switch-when="YOUTUBE">
-                <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" width="100%" height="100%" src="{{model.getYoutubeLink(widget.url)}}" frameborder="0" allowfullscreen></iframe>
-                </div>
+                <div ng-include="'views/widget/templates/widget-youtube.view.client.html'"></div>
             </div>
         </div>
     </div>

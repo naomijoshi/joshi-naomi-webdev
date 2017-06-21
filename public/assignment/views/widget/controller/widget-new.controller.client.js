@@ -5,19 +5,30 @@
 (function () {
     angular
         .module('WAM')
-        .controller('pageNewController', pageNewController);
+        .controller('widgetNewController', widgetNewController);
 
-    function pageNewController($location, $routeParams, pageService) {
+    function widgetNewController($location, $routeParams, widgetService) {
         var model = this;
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
-        model.pages = pageService.findPageByWebsiteId(model.wid);
+        model.pid = $routeParams.pid;
+        // model.widgets = widgetService.findWidgetByPageId(model.pid);
+        model.widgets = ["Heading" , "Html", "Image", "Youtube"];
 
-        model.createPage = function (page) {
-            if(page){
-                page["websiteId"] = model.wid;
-                pageService.createPage(page);
-                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
+        model.getWidgetNewUrl = function(type){
+            return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
+        };
+
+        model.select  = function (widget) {
+            model.selectedWidget = widget;
+        };
+
+
+        model.createWidget = function (widget) {
+            if(widget){
+                widget["pageId"] = model.pid;
+                widgetService.createWidget(widget);
+                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
             }
         }
     }
