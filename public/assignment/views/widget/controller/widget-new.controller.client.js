@@ -20,13 +20,14 @@
         };
 
         model.select  = function (widget) {
-            model.selectedWidget = widget;
+            model.widgetType = widget.toUpperCase();
         };
 
 
         model.createWidget = function (widget) {
             if(widget){
                 widget["pageId"] = model.pid;
+                widget["widgetType"] = model.widgetType;
                 widgetService.createWidget(widget);
                 $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
             }
