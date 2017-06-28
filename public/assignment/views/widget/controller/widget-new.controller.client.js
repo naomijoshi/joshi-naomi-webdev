@@ -12,7 +12,6 @@
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
         model.pid = $routeParams.pid;
-        // model.widgets = widgetService.findWidgetByPageId(model.pid);
         model.widgets = ["Heading" , "Html", "Image", "Youtube"];
 
         model.getWidgetNewUrl = function(type){
@@ -28,8 +27,10 @@
             if(widget){
                 widget["pageId"] = model.pid;
                 widget["widgetType"] = model.widgetType;
-                widgetService.createWidget(widget);
-                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
+                widgetService.createWidget(model.pid, widget)
+                    .then(function (data) {
+                        $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
+                    });
             }
         }
     }

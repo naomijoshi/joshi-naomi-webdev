@@ -11,6 +11,9 @@
         var model = this;
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
-        model.pages = pageService.findPageByWebsiteId(model.wid);
+        pageService.findPageByWebsiteId(model.wid)
+            .then(function (data) {
+                model.pages = data;
+            });
     }
 })();

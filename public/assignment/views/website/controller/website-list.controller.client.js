@@ -10,6 +10,9 @@
     function websiteListController($location, $routeParams, websiteService) {
         var model = this;
         model.userId = $routeParams.userId;
-        model.websites = websiteService.findWebsitesByUser(model.userId);
+        websiteService.findWebsitesByUser(model.userId)
+            .then(function (data) {
+                model.websites = data;
+            });
     }
 })();

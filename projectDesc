@@ -1,0 +1,52 @@
+# Project Description
+## Problem Statement
+Automate the process of buying insurance policies and remove manual intervention of agents in the insurance business.
+
+## Proposed Solution Description
+Provide a life insurance website for users that will recommend them insurance products based on their income, enable them to fill out an application and buy a policy after their application is approved by an approver (underwriter).
+
+## Objects and relationships in the project
+### Domain Objects
+* Application
+* Policy
+* Product
+* Health question bank
+> Filling an application is based on the product
+
+> An application consists of several health questions
+
+> An application is converted to a policy upon approval
+
+
+### Human Users
+* Buyer / Customer
+* Approver / Underwriter
+* Admin
+* Anonymous user
+
+#### The anonymous user will be able to:
+* Get a quote based on his inputs
+* View product details
+* Read product details
+
+#### The buyer/customer will be able to:
+* Register if he wants to apply for a policy
+* Enable save for later option while filling out the application
+* CRUD on insurance application
+
+#### The approver/underwriter will be able to:
+* Review the application submitted by the customer
+* Approve/Reject the application based on health questions
+* Generate the PDF of the bill
+* After approval of policy, send the bill to customer via email
+
+#### The admin will be able to:
+* CRUD on approvers
+* CRUD on products
+* CRUD on health question bank
+* RUD on customers
+
+## Proposed APIs
+* PDFiller https://docs.pdffiller.com/
+* Google Maps
+* Google Search

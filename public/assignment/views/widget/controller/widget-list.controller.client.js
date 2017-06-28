@@ -12,7 +12,10 @@
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
         model.pid = $routeParams.pid;
-        model.widgets = widgetService.findWidgetByPageId(model.pid);
+        widgetService.findWidgetByPageId(model.pid)
+            .then(function (data) {
+                model.widgets = data;
+            });
 
         model.trustThisContent = function (html) {
            return $sce.trustAsHtml(html);

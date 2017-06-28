@@ -10,11 +10,26 @@
     function profileController($location, $routeParams, userService) {
         var model = this;
         var userId = $routeParams.userId;
-        model.user = userService.findUserById(userId);
+        userService.findUserById(userId)
+            .then(function (data) {
+                model.user = data;
+            });
 
         model.update = function (user) {
             if (user){
-                userService.updateUser(user._id, user);
+                userService.updateUser(user._id, user)
+                    .then(function (response) {
+                        model.message = response;
+                    });
+            }
+        }
+
+        model.delete = function (user) {
+            if (user){
+                userService.deleteUser(user._id)
+                    .then(function (response) {
+                        $location.url("/login");
+                    });
             }
         }
     }

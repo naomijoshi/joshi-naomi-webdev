@@ -14,8 +14,10 @@
         model.createWebsite = function (website) {
             if(website){
                 website["developerId"] = model.userId;
-                websiteService.createWebsite(website);
-                $location.url("/user/"+model.userId+"/website");
+                websiteService.createWebsite(model.userId,website)
+                    .then(function (data) {
+                        $location.url("/user/"+model.userId+"/website");
+                    });
             }
         }
     }

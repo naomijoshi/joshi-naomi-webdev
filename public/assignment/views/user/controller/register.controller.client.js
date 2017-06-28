@@ -15,22 +15,27 @@
                 model.message = "Username,password cannot be blank";
                 return;
             }
-            var user = userService.findUserByUsername(username);
-            if (user){
-                model.message = "Username already exists. Please choose another";
-            } else {
-                if (password === verifyPassword){
-                    var user = {
-                        username : username,
-                        password : password
-                    };
-                    var createdUser = userService.createUser(user);
-                    $location.url("/user/"+createdUser._id);
-                } else {
-                    model.message = "Passwords do not match. Please try again"
+            userService.findUserByUsername(username)
+                .then(function (data) {
+                    if (!data){
+                        if (password === verifyPassword){
+                            var user = {
+                                username : username,
+                                password : password
+                            };
+                            userService.createUser(user)
+                                .then(function (response) {
+                                    $location.url("/user/"+response._id);
+                                });
+                        } else {
+                            model.message = "Passwords do not match. Please try again"
 
-                }
-            }
+                        }
+                    } else {
+                        model.message = "Username already exists. Please choose another";
+
+                    }
+                });
         }
     }
 })();

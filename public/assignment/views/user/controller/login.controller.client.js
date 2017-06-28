@@ -10,16 +10,15 @@
         var model = this;
 
         model.login = function (username,password) {
-            var user = userService.findUserByCredentials(username,password);
-            console.log("user coming back from service", user);
-            if (user){
-                $location.url("/user/"+user._id);
-            } else {
-                model.message = "Username "+username+ " not found";
-            }
-
-            // var x = {username: "bob",      password: "bob",firstName: "Bobby",    lastName: "Marley"  }
-            // userService.updateUser(user._id, x);
+            userService.findUserByCredentials(username,password)
+                .then(function (data) {
+                    {
+                        console.log("user coming back from service", data);
+                        $location.url("/user/"+data._id);
+                    }
+                }, function (err) {
+                        model.message = "Username "+username+ " not found";
+                });
         }
     }
 })();

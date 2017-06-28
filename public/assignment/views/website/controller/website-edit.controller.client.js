@@ -11,20 +11,31 @@
         var model = this;
         model.userId = $routeParams["userId"];
         model.wid = $routeParams["wid"];
-        model.website = websiteService.findWebsiteById(model.wid);
-        model.websites = websiteService.findWebsitesByUser(model.userId);
+        websiteService.findWebsiteById(model.wid)
+            .then(function (data) {
+                model.website = data;
+            });
+        websiteService.findWebsitesByUser(model.userId)
+            .then(function (data) {
+                model.websites = data;
+            });
+
         model.updateWebsite = function (website) {
             if(website){
                 website["developerId"] = model.userId;
-                websiteService.updateWebsite(website._id,website);
-                $location.url("/user/"+model.userId+"/website");
+                websiteService.updateWebsite(website._id,website)
+                    .then(function (data) {
+                        $location.url("/user/"+model.userId+"/website");
+                    });
             }
         }
 
         model.deleteWebsite = function (websiteId) {
             if (websiteId) {
-                websiteService.deleteWebsite(websiteId);
-                $location.url("/user/"+model.userId+"/website");
+                websiteService.deleteWebsite(websiteId)
+                    .then(function (data) {
+                        $location.url("/user/"+model.userId+"/website");
+                    });
             }
         }
     }

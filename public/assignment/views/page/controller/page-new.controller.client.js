@@ -16,8 +16,10 @@
         model.createPage = function (page) {
             if(page){
                 page["websiteId"] = model.wid;
-                pageService.createPage(page);
-                $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
+                pageService.createPage(model.wid,page)
+                    .then(function (data) {
+                        $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
+                    });
             }
         }
     }
