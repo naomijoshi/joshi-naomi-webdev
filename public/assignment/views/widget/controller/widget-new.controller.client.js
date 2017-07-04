@@ -9,6 +9,8 @@
 
     function widgetNewController($location, $routeParams, widgetService) {
         var model = this;
+        model.widgetId = '';
+        model.width = '100%';
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
         model.pid = $routeParams.pid;
@@ -27,6 +29,7 @@
             if(widget){
                 widget["pageId"] = model.pid;
                 widget["widgetType"] = model.widgetType;
+                console.log("Widget during creation");
                 widgetService.createWidget(model.pid, widget)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
