@@ -10,6 +10,10 @@
         var model = this;
 
         model.login = function (username,password) {
+            if(!username || !password) {
+                model.message = "Username,password cannot be blank";
+                return;
+            }
             userService.findUserByCredentials(username,password)
                 .then(function (data) {
                     {
