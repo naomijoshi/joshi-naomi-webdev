@@ -15,7 +15,15 @@
 </nav>
 
 <div class="container-fluid">
-<div ng-include="model.getWidgetEditUrl(model.widget.widgetType)"></div>
+    <div class="custom-pad">
+    <a class="btn btn-block btn-info"
+       href="#!user/{{model.userId}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/search"
+       ng-if="model.widget.widgetType='IMAGE'">
+        Search
+    </a>
+    </div>
+<div ng-include="model.getWidgetEditUrl(model.widget.widgetType)">
+</div>
 
 <a ng-click="model.updateWidget(model.widget)" class="btn btn-primary btn-block">
     Update

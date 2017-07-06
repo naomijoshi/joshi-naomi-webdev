@@ -7,7 +7,7 @@
         .module('WAM')
         .factory('widgetService', widgetService)
 
-    function widgetService($http) {
+    function widgetService($http, $routeParams) {
 
         function findWidgetById(widgetId) {
             var url = "/api/widget/" + widgetId;
@@ -49,12 +49,22 @@
                 })
         }
 
+        function sort(start, stop, pageId) {
+            var pageId = $routeParams.pid;
+            var url = "/api/page/"+pageId+"/widget?initial="+start+"&final="+stop;
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
             createWidget : createWidget,
             findWidgetByPageId : findWidgetByPageId,
             findWidgetById:findWidgetById,
             deleteWidget:deleteWidget,
-            updateWidget:updateWidget
+            updateWidget:updateWidget,
+            sort: sort
         };
     }
 })();

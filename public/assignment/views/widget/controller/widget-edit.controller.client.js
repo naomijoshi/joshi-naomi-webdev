@@ -16,8 +16,10 @@
         widgetService.findWidgetById(model.wgid)
             .then(function (data) {
                 model.widget = data;
+                model.getWidgetEditUrl = function(type){
+                    return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
+                }
             });
-
         widgetService.findWidgetByPageId(model.pid)
             .then(function (data) {
                 model.widgets = data;
@@ -42,8 +44,5 @@
             }
         }
 
-        model.getWidgetEditUrl = function(type){
-            return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
-        }
     }
 })();

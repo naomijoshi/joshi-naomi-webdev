@@ -13,6 +13,7 @@ app.get("/api/page/:pageId/widget", findWidgetByPageId);
 app.get("/api/widget/:widgetId", findWidgetById);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
+app.put("/api/page/:pageId/widget", sortWidget);
 
 var widgets =
     [
@@ -37,7 +38,6 @@ function renameFile(path, mimetype){
 }
 
 function uploadImage (req, res){
-    console.log("body received was" , req.body);
     var widgetId;
     var newWidget = true;
     if(req.body.widgetId === ""){
@@ -59,16 +59,21 @@ function uploadImage (req, res){
     var destination   = myFile.destination;  // folder where file is saved to
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
-    console.log("MyFile ", myFile);
     renameFile(path, mimetype);
     var widget;
     if(!newWidget) {
-        widget = findWidgetById(widgetId);
+        widget = widgets.find(function (widget) {
+            return widget._id === widgetId;
+        });
         widget.url = '/uploads/' + filename+'.'+mimetype.split('/')[1];
+        widget.name = req.body.name;
+        widget.text = req.body.text;
     }
     else {
         widget = { "_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "width": width};
         widget.url = '/uploads/' + filename+'.'+mimetype.split('/')[1];
+        widget.name = req.body.name;
+        widget.text = req.body.text;
         widgets.push(widget);
     }
 
@@ -124,4 +129,13 @@ function deleteWidget(req, res) {
     widgets.splice(index,1);
     res.status(200).json("Widget has been successfully deleted");
 
+}
+
+function sortWidget(req, res) {
+    var initial = req.query["initial"];
+    var final = req.query["final"];
+    var temp = widgets[final];
+    widgets[final] = widgets[initial];
+    widgets[initial] = temp;
+    res.status(200).json("Success");
 }
