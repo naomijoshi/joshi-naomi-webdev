@@ -38,6 +38,10 @@ function renameFile(path, mimetype){
 }
 
 function uploadImage (req, res){
+    if ( !req.file ) {
+        res.status(404).json("Please upload an image first");
+        return;
+    }
     var widgetId;
     var newWidget = true;
     if(req.body.widgetId === ""){

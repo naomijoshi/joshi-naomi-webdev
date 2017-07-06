@@ -11,6 +11,11 @@
 </nav>
 
 <div class="container-fluid">
+    <div class="custom-pad">
+        <div ng-show="model.message" class="alert alert-danger">
+            {{model.message}}
+        </div>
+    </div>
 <ul ng-if="!model.widgetType" class="list-group custom-pad">
     <li ng-repeat="widget in model.widgets" class="list-group-item">
         <div class="row">

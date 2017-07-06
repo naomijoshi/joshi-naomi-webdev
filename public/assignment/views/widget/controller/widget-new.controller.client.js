@@ -27,6 +27,12 @@
 
         model.createWidget = function (widget) {
             if(widget){
+                if(model.widgetType === "IMAGE" || model.widgetType === "YOUTUBE") {
+                    if(!widget["url"]) {
+                        model.message = "URL cannot be blank";
+                        return;
+                    }
+                }
                 widget["pageId"] = model.pid;
                 widget["widgetType"] = model.widgetType;
                 console.log("Widget during creation");
@@ -34,6 +40,8 @@
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
                     });
+            } else {
+                model.message = "Widget cannot be blank";
             }
         }
     }

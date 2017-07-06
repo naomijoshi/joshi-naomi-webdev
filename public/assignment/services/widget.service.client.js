@@ -50,7 +50,6 @@
         }
 
         function sort(start, stop, pageId) {
-            var pageId = $routeParams.pid;
             var url = "/api/page/"+pageId+"/widget?initial="+start+"&final="+stop;
             return $http.put(url)
                 .then(function (response) {
