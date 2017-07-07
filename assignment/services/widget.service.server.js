@@ -138,8 +138,24 @@ function deleteWidget(req, res) {
 function sortWidget(req, res) {
     var initial = req.query["initial"];
     var final = req.query["final"];
-    var temp = widgets[final];
-    widgets[final] = widgets[initial];
-    widgets[initial] = temp;
+    var pageId = req.param("pageId");
+    if (initial === final) {
+        res.status(200).json("Success");
+        return;
+    }
+    var start = -1;
+    for (var w in widgets) {
+        if (widgets[w].pageId == pageId) {
+            start += 1;
+            if (start == initial) {
+                initial = w;
+            }
+            if (start == final) {
+                final = w;
+            }
+        }
+    }
+    var widget = widgets.splice(initial, 1)[0];
+    widgets.splice(final, 0, widget);
     res.status(200).json("Success");
 }
