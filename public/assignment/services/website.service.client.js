@@ -33,15 +33,15 @@
         }
         
         function updateWebsite(websiteId, website) {
-            var url = "/api/website/" + websiteId;
+            var url = "/api/user/"+ website._user +"/website/" + websiteId;
             return $http.put(url, website)
                 .then(function (response) {
                     return response.data;
                 })
         }
 
-        function deleteWebsite(websiteId) {
-            var url = "/api/website/" + websiteId;
+        function deleteWebsite(userId, websiteId) {
+            var url = "/api/user/"+ userId +"/website/" + websiteId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

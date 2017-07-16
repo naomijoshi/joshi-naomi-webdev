@@ -17,11 +17,7 @@ function findUserByCredentials(req, res) {
     var password = req.query['password'];
     userModel.findUserByCredentials(username, password)
         .then(function (user) {
-            if (user) {
                 res.json(user);
-            } else {
-                res.status(404).json("user not found")
-            }
         })
         .catch(function (err) {
             res.status(404).json("user not found")

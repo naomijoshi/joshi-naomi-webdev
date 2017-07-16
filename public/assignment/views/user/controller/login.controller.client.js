@@ -16,9 +16,11 @@
             }
             userService.findUserByCredentials(username,password)
                 .then(function (data) {
-                    {
+                    if (data) {
                         console.log("user coming back from service", data);
                         $location.url("/user/"+data._id);
+                    } else {
+                        model.message = "Username "+username+ " not found";
                     }
                 }, function (err) {
                         model.message = "Username "+username+ " not found";

@@ -10,10 +10,12 @@
 
         var model = this;
         model.userId = $routeParams["userId"];
-        model.websites = websiteService.findWebsitesByUser(model.userId);
+        websiteService.findWebsitesByUser(model.userId)
+            .then(function (data) {
+                model.websites = data;
+            });
         model.createWebsite = function (website) {
             if(website){
-                website["developerId"] = model.userId;
                 websiteService.createWebsite(model.userId,website)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website");

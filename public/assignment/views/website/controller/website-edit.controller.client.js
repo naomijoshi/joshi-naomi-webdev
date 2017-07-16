@@ -22,17 +22,16 @@
 
         model.updateWebsite = function (website) {
             if(website){
-                website["developerId"] = model.userId;
                 websiteService.updateWebsite(website._id,website)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website");
                     });
             }
-        }
+        };
 
         model.deleteWebsite = function (websiteId) {
             if (websiteId) {
-                websiteService.deleteWebsite(websiteId)
+                websiteService.deleteWebsite(model.userId, websiteId)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website");
                     });
