@@ -24,7 +24,6 @@
 
         model.updatePage = function (page) {
             if(page){
-                page["websiteId"] = model.wid;
                 pageService.updatePage(page._id,page)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
@@ -34,7 +33,7 @@
 
         model.deletePage = function (pageId) {
             if (pageId) {
-                pageService.deletePage(pageId)
+                pageService.deletePage(pageId, model.wid)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
                     });

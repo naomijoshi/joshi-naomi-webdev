@@ -11,11 +11,13 @@
         var model = this;
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
-        model.pages = pageService.findPageByWebsiteId(model.wid);
+        pageService.findPageByWebsiteId(model.wid)
+            .then(function (pages) {
+                model.pages = pages;
+            });
 
         model.createPage = function (page) {
             if(page){
-                page["websiteId"] = model.wid;
                 pageService.createPage(model.wid,page)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");

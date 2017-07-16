@@ -11,12 +11,13 @@ websiteModel.findWebsitesByUser = findWebsitesByUser;
 websiteModel.deleteWebsite = deleteWebsite;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite =updateWebsite;
+websiteModel.addPage = addPage;
+websiteModel.removePage = removePage;
 
 
 module.exports = websiteModel;
 
 function createWebsite(userId, website) {
-    console.log("entring model");
     website._user = userId;
     return websiteModel.create(website)
         .then(function (website) {
@@ -53,4 +54,23 @@ function updateWebsite(websiteId, newWebsite) {
             _user: newWebsite._user
         }
     });
+}
+
+function removePage(websiteId, pageId) {
+    return websiteModel
+        .findById(websiteId)
+        .then(function (website) {
+            var index = website.pages.indexOf(pageId);
+            website.pages.splice(index, 1);
+            return website.save();
+        });
+}
+
+function addPage(websiteId, pageId) {
+    return websiteModel
+        .findById(websiteId)
+        .then(function (website) {
+            website.pages.push(pageId);
+            return website.save();
+        })
 }
