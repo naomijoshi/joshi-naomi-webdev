@@ -33,8 +33,8 @@
                         return;
                     }
                 }
-                widget["pageId"] = model.pid;
-                widget["widgetType"] = model.widgetType;
+                // widget["pageId"] = model.pid;
+                widget["type"] = model.widgetType;
                 console.log("Widget during creation");
                 widgetService.createWidget(model.pid, widget)
                     .then(function (data) {

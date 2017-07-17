@@ -6,6 +6,7 @@ var app = require('../../server');
 var multer = require('multer');
 var upload = multer({ dest: __dirname +'/../../public/uploads' });
 var fs = require('fs');
+var widgetModel = require("../model/widget/widget.model.server");
 
 app.post("/api/page/:pageId/widget", createWidget );
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
@@ -87,33 +88,31 @@ function uploadImage (req, res){
 
 
 function findWidgetById(req, res) {
-    var widgetId = req.param("widgetId");
-    var widget = widgets.find(function (widget) {
-        return widget._id === widgetId;
-    });
-    res.json(widget);
+    var widgetId = req.params["widgetId"];
+    widgetModel.findWidgetById(widgetId)
+        .then(function (widget) {
+            res.json(widget);
+        });
 }
 
 function findWidgetByPageId(req, res) {
-    var pageId = req.param("pageId");
-    var resultSet = [];
-    for (var w in widgets){
-        if(widgets[w].pageId === pageId){
-            resultSet.push(widgets[w]);
-        }
-    }
-    res.json(resultSet);
+    var pageId = req.params["pageId"];
+    widgetModel.findWidgetByPageId(pageId)
+        .then(function (widgets) {
+            res.json(widgets);
+        });
 }
 
 function createWidget(req, res) {
     var widget = req.body;
-    widget["_id"] = new Date().getMilliseconds().toString();
-    widgets.push(widget);
-    res.json(widget);
+    widgetModel.createWidget(req.params.pageId, widget)
+        .then(function (widget) {
+            res.json(widget);
+        });
 }
 
 function updateWidget(req, res) {
-    var widgetId = req.param("widgetId");
+    var widgetId = req.params["widgetId"];
     var widget = req.body;
     var widgetToUpdate = widgets.find(function (widget) {
         return widget._id === widgetId;
@@ -125,7 +124,7 @@ function updateWidget(req, res) {
 }
 
 function deleteWidget(req, res) {
-    var widgetId = req.param("widgetId");
+    var widgetId = req.params["widgetId"];
     var widget = widgets.find(function (widget) {
         return widget._id === widgetId;
     });
@@ -138,7 +137,7 @@ function deleteWidget(req, res) {
 function sortWidget(req, res) {
     var initial = req.query["initial"];
     var final = req.query["final"];
-    var pageId = req.param("pageId");
+    var pageId = req.params["pageId"];
     if (initial === final) {
         res.status(200).json("Success");
         return;
