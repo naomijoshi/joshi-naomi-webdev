@@ -37,7 +37,7 @@
 
         model.deleteWidget = function (widgetId) {
             if (widgetId) {
-                widgetService.deleteWidget(widgetId)
+                widgetService.deleteWidget(model.pid, widgetId)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
                     });

@@ -55,7 +55,7 @@ function deletePage(websiteId, pageId) {
 
 function removeWidget(pageId, widgetId) {
     return pageModel
-        .findById(pageId)
+        .findPageById(pageId)
         .then(function (page) {
             var index = page.widgets.indexOf(widgetId);
             page.widgets.splice(index, 1);
@@ -65,7 +65,7 @@ function removeWidget(pageId, widgetId) {
 
 function addWidget(pageId,widgetId) {
     return pageModel
-        .findById(pageId)
+        .findPageById(pageId)
         .then(function (page) {
             page.widgets.push(widgetId);
             return page.save();

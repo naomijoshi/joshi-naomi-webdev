@@ -13,7 +13,7 @@ app.post ("/api/upload", upload.single('myFile'), uploadImage);
 app.get("/api/page/:pageId/widget", findWidgetByPageId);
 app.get("/api/widget/:widgetId", findWidgetById);
 app.put("/api/widget/:widgetId", updateWidget);
-app.delete("/api/widget/:widgetId", deleteWidget);
+app.delete("/api/page/:pageId/widget/:widgetId", deleteWidget);
 app.put("/api/page/:pageId/widget", sortWidget);
 
 var widgets =
@@ -122,11 +122,7 @@ function updateWidget(req, res) {
 
 function deleteWidget(req, res) {
     var widgetId = req.params["widgetId"];
-    var widget = widgets.find(function (widget) {
-        return widget._id === widgetId;
-    });
-    var index = widgets.indexOf(widget);
-    widgets.splice(index,1);
+    var pageId = req.params["pageId"];
     res.status(200).json("Widget has been successfully deleted");
 
 }
