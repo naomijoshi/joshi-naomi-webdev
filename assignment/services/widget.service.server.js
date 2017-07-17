@@ -135,19 +135,22 @@ function sortWidget(req, res) {
         res.status(200).json("Success");
         return;
     }
-    var start = -1;
-    for (var w in widgets) {
-        if (widgets[w].pageId == pageId) {
-            start += 1;
-            if (start == initial) {
-                initial = w;
-            }
-            if (start == final) {
-                final = w;
-            }
-        }
-    }
-    var widget = widgets.splice(initial, 1)[0];
-    widgets.splice(final, 0, widget);
-    res.status(200).json("Success");
+    widgetModel.reorderWidget(pageId, initial, final)
+        .then(function (data) {
+            res.status(200).json("Success");
+        });
+    // var start = -1;
+    // for (var w in widgets) {
+    //     if (widgets[w].pageId == pageId) {
+    //         start += 1;
+    //         if (start == initial) {
+    //             initial = w;
+    //         }
+    //         if (start == final) {
+    //             final = w;
+    //         }
+    //     }
+    // }
+
+
 }

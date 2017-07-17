@@ -11,6 +11,7 @@ widgetModel.findWidgetById = findWidgetById;
 widgetModel.findWidgetByPageId=findWidgetByPageId;
 widgetModel.updateWidget =updateWidget;
 widgetModel.deleteWidget=deleteWidget;
+widgetModel.reorderWidget=reorderWidget;
 
 module.exports = widgetModel;
 
@@ -41,4 +42,13 @@ function deleteWidget(pageId, widgetId) {
         .then(function (data) {
             return pageModel.removeWidget(pageId, widgetId);
         })
+}
+
+function reorderWidget(pageId, start, end) {
+    return widgetModel.find({_page : pageId})
+        .then(function (widgets) {
+            var widget = widgets.splice(initial, 1)[0];
+            widgets.splice(final, 0, widget);
+            return pageModel.update({_id: pageId, $set: {widgets : widgets}});
+        });
 }
