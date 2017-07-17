@@ -9,6 +9,8 @@ var pageModel = require("../page/page.model.server");
 widgetModel.createWidget = createWidget;
 widgetModel.findWidgetById = findWidgetById;
 widgetModel.findWidgetByPageId=findWidgetByPageId;
+widgetModel.updateWidget =updateWidget;
+widgetModel.deleteWidget=deleteWidget;
 
 module.exports = widgetModel;
 
@@ -28,4 +30,15 @@ function findWidgetByPageId(pageId) {
     widgetModel.find({_page : pageId})
         .populate('_page')
         .exec();
+}
+
+function updateWidget(widgetId, widget) {
+    return widgetModel.update({_id: widgetId},{$set: widget});
+}
+
+function deleteWidget(pageId, widgetId) {
+    return widgetModel.remove({_id:widgetId})
+        .then(function (data) {
+            return pageModel.removeWidget(pageId, widgetId);
+        })
 }

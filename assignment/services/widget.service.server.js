@@ -114,13 +114,10 @@ function createWidget(req, res) {
 function updateWidget(req, res) {
     var widgetId = req.params["widgetId"];
     var widget = req.body;
-    var widgetToUpdate = widgets.find(function (widget) {
-        return widget._id === widgetId;
-    });
-    widget["_id"] = widgetToUpdate._id;
-    var index = widgets.indexOf(widgetToUpdate);
-    widgets[index] = widget;
-    res.status(200).json("Widget has been successfully updated");
+    widgetModel.updateWidget(widgetId, widget)
+        .then(function (data) {
+            res.status(200).json("Widget has been successfully updated");
+        })
 }
 
 function deleteWidget(req, res) {
