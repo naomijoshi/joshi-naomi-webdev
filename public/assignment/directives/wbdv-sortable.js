@@ -12,7 +12,6 @@
         function linkFunction(scope, element) {
             var start = 0;
             var stop = 0;
-            var pageId = $routeParams.pid;
 
             $(element).sortable({
                 start: function( event, ui ) {
@@ -20,7 +19,7 @@
                 },
                 stop: function (event, ui) {
                     stop = $(ui.item).index();
-
+                    var pageId = $routeParams.pid;
                     widgetService.sort(start, stop, pageId)
                         .then(function (data) {
                             return;
