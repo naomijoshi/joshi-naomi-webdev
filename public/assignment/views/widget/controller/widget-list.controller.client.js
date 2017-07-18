@@ -19,7 +19,7 @@
 
         model.trustThisContent = function (html) {
            return $sce.trustAsHtml(html);
-        }
+        };
         
         model.getYoutubeLink = function (youtubeLink) {
             var embedUrl = 'https://www.youtube.com/embed/';

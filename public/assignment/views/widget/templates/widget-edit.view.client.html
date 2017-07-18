@@ -18,11 +18,11 @@
     <div class="custom-pad">
     <a class="btn btn-block btn-info"
        href="#!user/{{model.userId}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/search"
-       ng-if="model.widget.widgetType='IMAGE'">
+       ng-if="model.widget.type=='IMAGE'">
         Search
     </a>
     </div>
-<div ng-include="model.getWidgetEditUrl(model.widget.widgetType)">
+<div ng-include="model.getWidgetEditUrl(model.widget.type)">
 </div>
 
 <a ng-click="model.updateWidget(model.widget)" class="btn btn-primary btn-block">

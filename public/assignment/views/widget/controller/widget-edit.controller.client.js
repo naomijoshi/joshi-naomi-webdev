@@ -16,7 +16,9 @@
         widgetService.findWidgetById(model.wgid)
             .then(function (data) {
                 model.widget = data;
+                console.log(model.widget);
                 model.getWidgetEditUrl = function(type){
+                    console.log("type", type);
                     return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
                 }
             });
@@ -33,7 +35,7 @@
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
                     });
             }
-        }
+        };
 
         model.deleteWidget = function (widgetId) {
             if (widgetId) {
