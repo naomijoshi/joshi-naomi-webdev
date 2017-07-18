@@ -16,9 +16,10 @@
         widgetService.findWidgetById(model.wgid)
             .then(function (data) {
                 model.widget = data;
-                console.log(model.widget);
+                if (model.widget.rows) {
+                    parseInt(model.widget.rows);
+                }
                 model.getWidgetEditUrl = function(type){
-                    console.log("type", type);
                     return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
                 }
             });

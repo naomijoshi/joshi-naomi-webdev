@@ -28,6 +28,7 @@
     </li>
 </ul>
     <div ng-if="model.widgetType" ng-include="model.getWidgetNewUrl(model.widgetType)"></div>
+    <br>
     <a ng-if="model.widgetType" ng-click="model.createWidget(model.widget)" class="btn btn-primary btn-block">
         Create
     </a>

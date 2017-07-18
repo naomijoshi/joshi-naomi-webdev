@@ -20,6 +20,7 @@
                 stop: function (event, ui) {
                     stop = $(ui.item).index();
                     var pageId = $routeParams.pid;
+                    console.log("pageID",pageId);
                     widgetService.sort(start, stop, pageId)
                         .then(function (data) {
                             return;
