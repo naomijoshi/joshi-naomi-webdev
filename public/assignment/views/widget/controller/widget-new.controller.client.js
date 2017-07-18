@@ -14,7 +14,7 @@
         model.wid = $routeParams.wid;
         model.userId = $routeParams.userId;
         model.pid = $routeParams.pid;
-        model.widgets = ["Heading" , "Html", "Image", "Youtube"];
+        model.widgets = ["Heading" , "Html", "Image", "Youtube", "Text"];
 
         model.getWidgetNewUrl = function(type){
             return 'views/widget/templates/widget-'+type.toLowerCase()+'.edit.client.html';
@@ -35,7 +35,7 @@
                 }
                 // widget["pageId"] = model.pid;
                 widget["type"] = model.widgetType;
-                console.log("Widget during creation");
+                console.log("Widget during creation", widget);
                 widgetService.createWidget(model.pid, widget)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");

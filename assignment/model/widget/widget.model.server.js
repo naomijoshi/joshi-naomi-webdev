@@ -16,6 +16,7 @@ widgetModel.reorderWidget=reorderWidget;
 module.exports = widgetModel;
 
 function createWidget(pageId, widget) {
+    console.log(widget);
     widget._page = pageId;
     return widgetModel.create(widget)
         .then(function (widget) {

@@ -3,6 +3,6 @@
  */
 (function () {
     angular
-        .module('WAM',['ngRoute', 'sortable'])
+        .module('WAM',['ngRoute', 'sortable', 'textAngular'])
 
 })();

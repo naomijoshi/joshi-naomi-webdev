@@ -144,18 +144,4 @@ function sortWidget(req, res) {
         .then(function (data) {
             res.status(200).json("Success");
         });
-    // var start = -1;
-    // for (var w in widgets) {
-    //     if (widgets[w].pageId == pageId) {
-    //         start += 1;
-    //         if (start == initial) {
-    //             initial = w;
-    //         }
-    //         if (start == final) {
-    //             final = w;
-    //         }
-    //     }
-    // }
-
-
 }
