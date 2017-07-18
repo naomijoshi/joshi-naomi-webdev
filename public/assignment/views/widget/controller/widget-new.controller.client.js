@@ -33,7 +33,6 @@
                         return;
                     }
                 }
-                // widget["pageId"] = model.pid;
                 widget["type"] = model.widgetType;
                 widgetService.createWidget(model.pid, widget)
                     .then(function (data) {
