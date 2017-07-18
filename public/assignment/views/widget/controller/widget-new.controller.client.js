@@ -35,7 +35,6 @@
                 }
                 // widget["pageId"] = model.pid;
                 widget["type"] = model.widgetType;
-                console.log("Widget during creation", widget);
                 widgetService.createWidget(model.pid, widget)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");

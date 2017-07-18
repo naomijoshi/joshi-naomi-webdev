@@ -46,13 +46,11 @@ function deleteWidget(pageId, widgetId) {
 }
 
 function reorderWidget(pageId, start, end) {
-    console.log("pageID in model", pageId);
     return pageModel.findById(pageId)
         .then(function (page) {
             widgets = page.widgets;
             var widget = widgets.splice(start, 1)[0];
             widgets.splice(end, 0, widget);
-            console.log(widgets);
             return pageModel.update({_id: pageId}, {$set: {widgets : widgets}});
             // for (w in widgets) {
             //     w.save();
