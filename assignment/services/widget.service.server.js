@@ -45,9 +45,7 @@ function uploadImage (req, res){
     }
     var widgetId;
     var newWidget = true;
-    if(req.body.widgetId === ""){
-        widgetId = new Date().getMilliseconds().toString();
-    } else {
+    if(req.body.widgetId){
         widgetId = req.body.widgetId;
         newWidget = false;
     }
@@ -67,23 +65,27 @@ function uploadImage (req, res){
     renameFile(path, mimetype);
     var widget;
     if(!newWidget) {
-        widget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        });
+        widget = {"type": "IMAGE"};
         widget.url = '/uploads/' + filename+'.'+mimetype.split('/')[1];
         widget.name = req.body.name;
         widget.text = req.body.text;
+        widgetModel.updateWidget(widgetId, widget)
+            .then(function (data) {
+                var callbackUrl   = "/assignment/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId +"/widget";
+                res.redirect(callbackUrl);
+            })
     }
     else {
-        widget = { "_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "width": width};
+        widget = {"type": "IMAGE", "width": width};
         widget.url = '/uploads/' + filename+'.'+mimetype.split('/')[1];
         widget.name = req.body.name;
         widget.text = req.body.text;
-        widgets.push(widget);
+        widgetModel.createWidget(pageId, widget)
+            .then(function (data) {
+                var callbackUrl   = "/assignment/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId +"/widget";
+                res.redirect(callbackUrl);
+            })
     }
-
-    var callbackUrl   = "/assignment/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId +"/widget";
-    res.redirect(callbackUrl);
 }
 
 
