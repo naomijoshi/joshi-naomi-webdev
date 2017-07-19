@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+            <a class="navbar-brand" href="#!user/{{model.user._id}}">
+                Profile
+            </a>
+            <a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-ok">
+              </span>
+            </a>
+    </div>
+</nav>
+
+
+    <div class="container-fluid">
+        <form class="custom-pad">
+            <div ng-show="model.message" class="alert alert-success">
+                {{model.message}}
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" ng-model="model.user.username" disabled>
+            </div>
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" ng-model="model.user.firstName" placeholder="firstname">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" ng-model="model.user.lastName" placeholder="lastname">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" ng-model="model.user.email" placeholder="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" ng-model="model.user.phone" placeholder="phone">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" ng-model="model.user.address" placeholder="Search address">
+            </div>
+        </form>
+
+        <a class="btn btn-primary btn-block"
+           href="#!user/{{model.user._id}}/website">Websites</a>
+        <a class="btn btn-success btn-block"
+           ng-click="model.update(model.user)">Update profile</a>
+        <a class="btn btn-danger btn-block"
+           ng-click="model.delete(model.user)">Unregister</a>
+        <a class="btn btn-danger  btn-block"
+           href="#!login">Logout</a>
+    </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">
+              <span class="glyphicon glyphicon-user">
+              </span>
+        </a>
+    </div>
+</nav>

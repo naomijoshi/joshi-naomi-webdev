@@ -1,10 +1,67 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MyProject">
 <head>
-    <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="vendor/textangular/css/textAngular.css" rel = "stylesheet">
+
+    <!--<link href="css/cover.css" rel="stylesheet">-->
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-route.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-ui.js"></script>
+    <script src="vendor/textangular/js/textAngular-rangy.min.js"></script>
+    <script src="vendor/textangular/js/textAngular-sanitize.min.js"></script>
+    <script src="vendor/textangular/js/textAngular.min.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKg2yhNCDY3OPbXkTfscUVXc6X7V11D1Y&libraries=places"></script>
+
+    <!--controllers-->
+    <script src="views/user/controller/login.controller.client.js"></script>
+    <script src="views/user/controller/profile.controller.client.js"></script>
+    <script src="views/user/controller/register.controller.client.js"></script>
+    <!--<script src="views/website/controller/website-list.controller.client.js"></script>-->
+    <!--<script src="views/website/controller/website-new.controller.client.js"></script>-->
+    <!--<script src="views/website/controller/website-edit.controller.client.js"></script>-->
+    <!--<script src="views/page/controller/page-new.controller.client.js"></script>-->
+    <!--<script src="views/page/controller/page-list.controller.client.js"></script>-->
+    <!--<script src="views/page/controller/page-edit.controller.client.js"></script>-->
+    <!--<script src="views/widget/controller/widget-list.controller.client.js"></script>-->
+    <!--<script src="views/widget/controller/widget-edit.controller.client.js"></script>-->
+    <!--<script src="views/widget/controller/widget-new.controller.client.js"></script>-->
+    <!--<script src="views/widget/controller/widget-flickr-search.controller.client.js"></script>-->
+
+    <!--Directives-->
+    <!--<script src="directives/wbdv-sortable.js"></script>-->
+
+    <!--services-->
+    <script src="./services/user.service.client.js"></script>
+    <!--<script src="./services/website.service.client.js"></script>-->
+    <!--<script src="./services/page.service.client.js"></script>-->
+    <!--<script src="./services/widget.service.client.js"></script>-->
+    <!--<script src="./services/flickr.service.client.js"></script>-->
+
 </head>
+
 <body>
-    <h1>Project Home Page</h1>
+<div ng-view></div>
 </body>
 </html>

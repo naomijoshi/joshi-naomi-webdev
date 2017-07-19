@@ -1,0 +1,22 @@
+ <div class="container-fluid">
+        <h1>Register</h1>
+         <div ng-show="model.message" class="alert alert-danger">
+             {{model.message}}
+         </div>
+        <input type="text"
+               class="form-control"
+               ng-model="username"
+               placeholder="username"/>
+        <input type="password"
+               class="form-control"
+               ng-model="password"
+               placeholder="password"/>
+        <input type="password"
+               class="form-control"
+               ng-model="verifyPassword"
+               placeholder="verify password"/>
+        <a class="btn btn-primary btn-block"
+           ng-click="model.register(username,password,verifyPassword)">Register</a>
+        <a class="btn btn-danger  btn-block"
+           href="#">Cancel</a>
+ </div>
