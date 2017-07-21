@@ -62,3 +62,10 @@ body {
     padding-bottom: 3px;
     z-index: 1000;
 }
+.map {
+    z-index: 1000;
+     width: 100%;
+    position: absolute;
+     height: 400px;
+     background-color: grey;
+ }

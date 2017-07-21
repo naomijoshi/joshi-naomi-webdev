@@ -26,6 +26,11 @@
                 controller : "registerController",
                 controllerAs: "model"
             })
+            .when('/recommend' , {
+                templateUrl : "views/user/templates/recommend.view.client.html",
+                controller : "recommendController",
+                controllerAs: "model"
+            })
             // .when('/user/:userId/website' , {
             //     templateUrl : "views/website/templates/website-list.view.client.html",
             //     controller : "websiteListController",

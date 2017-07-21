@@ -5,9 +5,10 @@ input.form-control {
 body {
     padding-top: 50px;
     padding-bottom: 60px;
+    background-image: url("../images/BG_Insurance.png");
 }
 .navbar-default {
-    background-color: #337ab7;
+    background-color: #015966;
     border-color: #e7e7e7;
 }
 .navbar-nav {
@@ -45,7 +46,7 @@ body {
     height:90vh;
 }
 .custom-pad {
-    padding-top: 10px;
+    padding-top: 50px;
 }
 .custom-widget{
     position: relative;
