@@ -1,9 +1,18 @@
 var express = require('express');
 var app = express();
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var passport = require('passport');
+
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser());
+app.use(session({ secret: "mysecretofsessionisfoundhereblah double blah" }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));

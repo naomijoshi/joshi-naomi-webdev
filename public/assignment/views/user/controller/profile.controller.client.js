@@ -7,13 +7,9 @@
         .module('WAM')
         .controller('profileController', profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController(currentUser, $location, userService) {
         var model = this;
-        var userId = $routeParams.userId;
-        userService.findUserById(userId)
-            .then(function (data) {
-                model.user = data;
-            });
+        model.user = currentUser;
 
         model.update = function (user) {
             if (user){
@@ -22,7 +18,7 @@
                         model.message = response;
                     });
             }
-        }
+        };
 
         model.delete = function (user) {
             if (user){
@@ -31,6 +27,16 @@
                         $location.url("/login");
                     });
             }
+        };
+
+        model.logout = function logout() {
+            userService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/login");
+                    })
         }
-    }
-})()
+
+        }
+})();

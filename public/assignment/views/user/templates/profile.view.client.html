@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-            <a class="navbar-brand" href="#!user/{{model.user._id}}">
+            <a class="navbar-brand" href="#!profile">
                 Profile
             </a>
-            <a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">
+            <a href="#!profile" class="navbar-brand pull-right">
               <span class="glyphicon glyphicon-ok">
               </span>
             </a>
@@ -45,12 +45,12 @@
         <a class="btn btn-danger btn-block"
            ng-click="model.delete(model.user)">Unregister</a>
         <a class="btn btn-danger  btn-block"
-           href="#!login">Logout</a>
+           ng-click="model.logout(model.user)">Logout</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">
+        <a href="#!profile" class="navbar-brand pull-right">
               <span class="glyphicon glyphicon-user">
               </span>
         </a>

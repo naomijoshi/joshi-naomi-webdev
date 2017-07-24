@@ -14,11 +14,11 @@
                 model.message = "Username,password cannot be blank";
                 return;
             }
-            userService.findUserByCredentials(username,password)
+            userService.login(username,password)
                 .then(function (data) {
                     if (data) {
                         console.log("user coming back from service", data);
-                        $location.url("/user/"+data._id);
+                        $location.url("/profile");
                     } else {
                         model.message = "Username "+username+ " not found";
                     }

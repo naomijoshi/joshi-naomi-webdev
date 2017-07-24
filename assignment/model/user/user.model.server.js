@@ -15,6 +15,11 @@ userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+userModel.findUserByFacebookId=findUserByFacebookId;
+
+function findUserByFacebookId(facebookId) {
+    return userModel.findOne({'facebook.id': facebookId});
+}
 
 function createUser(user) {
     return userModel.create(user);

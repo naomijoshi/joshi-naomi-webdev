@@ -23,9 +23,9 @@
                                 username : username,
                                 password : password
                             };
-                            userService.createUser(user)
+                            userService.register(user)
                                 .then(function (response) {
-                                    $location.url("/user/"+response._id);
+                                    $location.url("/profile");
                                 });
                         } else {
                             model.message = "Passwords do not match. Please try again"
