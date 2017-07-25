@@ -14,6 +14,7 @@ app.use(session({ secret: "mysecretofsessionisfoundhereblah double blah" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
@@ -25,4 +26,4 @@ app.listen(port);
 module.exports = app;
 
 require("./assignment/app.js");
-require("./test/app.js");
+// require("./test/app.js");
