@@ -10,10 +10,10 @@
     function profileController($location, $routeParams, userService) {
         var model = this;
         var userId = $routeParams.userId;
-        var input = document.getElementById('address');
-        console.log(input);
-        var autocomplete = new google.maps.places.Autocomplete(input);
-
+        function initialize() {
+            var input = document.getElementById('address');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
         google.maps.event.addDomListener(window, 'load', initialize);
 
         userService.findUserById(userId)

@@ -5,10 +5,10 @@ input.form-control {
 body {
     padding-top: 50px;
     padding-bottom: 60px;
-    background-image: url("../images/BG_Insurance.png");
+    background-image: url("../images/insurance.jpg");
 }
 .navbar-default {
-    background-color: #015966;
+    background-color: dodgerblue;
     border-color: #e7e7e7;
 }
 .navbar-nav {
@@ -46,7 +46,7 @@ body {
     height:90vh;
 }
 .custom-pad {
-    padding-top: 50px;
+    padding-top: 30px;
 }
 .custom-widget{
     position: relative;
@@ -62,4 +62,27 @@ body {
     padding-left: 5px;
     padding-bottom: 3px;
     z-index: 1000;
+}
+
+.custom-login-border{
+    border-top: 1px solid#888;
+    padding-top:15px;
+    font-size:85%
+}
+
+.custom-register-signinlink{
+    float:right;
+    font-size: 85%;
+    position: relative;
+    top:-10px
+}
+
+.panel-info>.panel-heading{
+    background-color: #75ace2;
+    color: white;
+    border-color: #337ab7
+}
+
+.panel-info {
+    border-color: #337ab7;
 }
