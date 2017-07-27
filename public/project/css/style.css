@@ -11,7 +11,7 @@ body {
     /*background-image: url("../images/insurance.jpg");*/
 }
 .navbar-default {
-    background-color: #4484CE;
+    background-color: rgba(3,20,36,0.7);
     border-color: #e7e7e7;
 }
 .navbar-nav {
