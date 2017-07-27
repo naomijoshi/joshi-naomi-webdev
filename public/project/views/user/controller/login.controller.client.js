@@ -8,22 +8,21 @@
 
     function loginController($location, userService) {
         var model = this;
-
         model.login = function (username,password) {
             if(!username || !password) {
                 model.message = "Username,password cannot be blank";
                 return;
             }
-            userService.findUserByCredentials(username,password)
+            userService.login(username,password)
                 .then(function (data) {
                     if (data) {
                         console.log("user coming back from service", data);
-                        $location.url("/user/"+data._id);
+                        $location.url("/profile");
                     } else {
                         model.message = "Username "+username+ " not found";
                     }
                 }, function (err) {
-                        model.message = "Username "+username+ " not found";
+                    model.message = "Username "+username+ " not found";
                 });
         }
     }

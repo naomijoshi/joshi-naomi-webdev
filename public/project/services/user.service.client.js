@@ -8,6 +8,26 @@
 
     function userService($http) {
 
+        function login(username,password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            var url = "/api/login";
+            return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            return $http.post("/api/logout")
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
         function findUserByCredentials(username, password) {
             var url = "/api/user?username=" + username + "&password=" + password;
             return $http.get(url)
@@ -31,7 +51,15 @@
                     return response.data;
                 });
         }
-        
+
+        function register(user) {
+            var url = "/api/register";
+            return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
         function findUserByUsername(username) {
             var url = "/api/user?username=" + username;
             return $http.get(url)
@@ -57,13 +85,25 @@
                 })
         }
 
+        function checkLoggedIn() {
+            var url = "/api/checkLoggedIn";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
             createUser : createUser,
             findUserById : findUserById,
             findUserByCredentials:findUserByCredentials,
             findUserByUsername:findUserByUsername,
             deleteUser:deleteUser,
-            updateUser:updateUser
+            updateUser:updateUser,
+            login:login,
+            logout:logout,
+            checkLoggedIn:checkLoggedIn,
+            register:register
         };
     }
 })();

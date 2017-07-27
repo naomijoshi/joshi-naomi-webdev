@@ -9,23 +9,20 @@
     function registerController($location, userService) {
 
         var model = this;
-        model.register = function (username,password,verifyPassword) {
+        model.register = function (user) {
 
-            if(!username || !password || !verifyPassword) {
+            if(!user) {
                 model.message = "Username,password cannot be blank";
                 return;
             }
-            userService.findUserByUsername(username)
+            userService.findUserByUsername(user.username)
                 .then(function (data) {
                     if (!data){
-                        if (password === verifyPassword){
-                            var user = {
-                                username : username,
-                                password : password
-                            };
-                            userService.createUser(user)
+                        if (user.password === user.conPassword){
+                            model.user = user;
+                            userService.createUser(model.user)
                                 .then(function (response) {
-                                    $location.url("/user/"+response._id);
+                                    $location.url("/profile");
                                 });
                         } else {
                             model.message = "Passwords do not match. Please try again"

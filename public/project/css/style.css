@@ -5,10 +5,13 @@ input.form-control {
 body {
     padding-top: 50px;
     padding-bottom: 60px;
-    background-image: url("../images/insurance.jpg");
+    color: #eae3ea;
+    /*background-color: rgba(241,159,77,0.8);*/
+    background-color: #30415d;
+    /*background-image: url("../images/insurance.jpg");*/
 }
 .navbar-default {
-    background-color: dodgerblue;
+    background-color: #4484CE;
     border-color: #e7e7e7;
 }
 .navbar-nav {
@@ -67,7 +70,8 @@ body {
 .custom-login-border{
     border-top: 1px solid#888;
     padding-top:15px;
-    font-size:85%
+    font-size:85%;
+    color: #202020;
 }
 
 .custom-register-signinlink{
@@ -78,11 +82,47 @@ body {
 }
 
 .panel-info>.panel-heading{
-    background-color: #75ace2;
+    background-color: #cf6766;
     color: white;
-    border-color: #337ab7
+    border-color: #cf6766
 }
 
 .panel-info {
-    border-color: #337ab7;
+    border-color: #cf6766;
+}
+
+.panel>.panel-default{
+    background-color: inherit;
+}
+.jumbotron{
+    /*background-color: #30415d;*/
+    background-color: rgba(3,20,36,0.7);
+    display: block;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+
+.home-title{
+    color: #cf6766;
+    display: block;
+    border-radius: 15px;
+    text-align: center;
+}
+
+label{
+    color: #202020;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.black{
+    color: #202020;
+}
+
+.bluelink{
+    color: #337ab7;
 }
