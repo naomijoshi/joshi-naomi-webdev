@@ -1,11 +1,17 @@
+<div ng-controller="sharedController">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#!user/{{model.user._id}}">
-            Profile
+        <a class="navbar-brand" href="#!/profile">
+            Home
         </a>
-        <a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">
-              <span class="glyphicon glyphicon-ok">
-              </span>
-        </a>
+        <!--<a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">-->
+            <span class="navbar-brand pull-right">
+                <button ng-click="logout()"
+                        id="btn-logout"
+                        type="button"
+                        class="btn btn-danger"><i class="icon-hand-right"></i> &nbsp Logout</button>
+            </span>
+        <!--</a>-->
     </div>
 </nav>
+</div>

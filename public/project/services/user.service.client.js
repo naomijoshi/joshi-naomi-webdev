@@ -6,7 +6,7 @@
         .module('MyProject')
         .factory('userService', userService)
 
-    function userService($http) {
+    function userService($http,$rootScope) {
 
         function login(username,password) {
             var user = {
@@ -27,6 +27,9 @@
                 });
         }
 
+        function setCurrentUser(user){
+            $rootScope.currentUser = user;
+        }
 
         function findUserByCredentials(username, password) {
             var url = "/api/user?username=" + username + "&password=" + password;
@@ -103,7 +106,8 @@
             login:login,
             logout:logout,
             checkLoggedIn:checkLoggedIn,
-            register:register
+            register:register,
+            setCurrentUser:setCurrentUser
         };
     }
 })();

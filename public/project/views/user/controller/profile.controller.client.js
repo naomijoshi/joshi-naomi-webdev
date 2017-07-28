@@ -51,7 +51,7 @@
             if (user){
                 userService.deleteUser(user._id)
                     .then(function (response) {
-                        $location.url("/login");
+                        $location.url("/home");
                     });
             }
         }

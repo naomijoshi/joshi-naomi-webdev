@@ -49,6 +49,7 @@ function login(req, res) {
 }
 
 function logout(req, res) {
+    console.log("user log out is called");
     req.logOut();
     res.send(200);
 }

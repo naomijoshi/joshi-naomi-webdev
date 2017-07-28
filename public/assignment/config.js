@@ -112,7 +112,6 @@
                     deffered.resolve(currentUser);
                 }
             });
-        console.log("checkcurret",deffered.promise);
         return deffered.promise;
     }
 

@@ -8,10 +8,13 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when('/' , {
+            .when('/home' , {
                 templateUrl : "views/user/templates/login.view.client.html",
                 controller : "loginController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
             })
             .when('/profile' , {
                 templateUrl : "views/user/templates/profile.view.client.html",
@@ -47,6 +50,20 @@
             });
         console.log("checklogged",deffered.promise);
 
+        return deffered.promise;
+    }
+
+    function checkCurrentUser($q, userService) {
+        var deffered = $q.defer();
+        userService.checkLoggedIn()
+            .then(function (currentUser) {
+                if (currentUser === "0") {
+                    deffered.resolve({});
+                } else {
+                    deffered.resolve(currentUser);
+                }
+            });
+        console.log("checkcurret",deffered.promise);
         return deffered.promise;
     }
 

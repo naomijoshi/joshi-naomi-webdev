@@ -40,6 +40,7 @@
     <script src="views/user/controller/profile.controller.client.js"></script>
     <script src="views/user/controller/register.controller.client.js"></script>
     <script src="views/user/controller/recommend.controller.client.js"></script>
+    <script src="views/shared/controller/shared.controller.client.js"></script>
 
     <!--<script src="views/website/controller/website-list.controller.client.js"></script>-->
     <!--<script src="views/website/controller/website-new.controller.client.js"></script>-->
@@ -65,6 +66,7 @@
 </head>
 
 <body>
+<div ng-include="'views/shared/templates/header.view.client.html'"></div>
 <div ng-view></div>
 </body>
 </html>
