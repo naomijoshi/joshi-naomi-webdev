@@ -21,6 +21,7 @@
         };
 
         function initialize() {
+            console.log("loading in recommend");
             autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'),{ types: ['geocode'] });
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 fillInAddress();

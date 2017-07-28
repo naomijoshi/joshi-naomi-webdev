@@ -5,7 +5,6 @@ var userSchema = require("./user.schema.server");
 var mongoose = require('mongoose');
 var userModel = mongoose.model('UserModel', userSchema);
 
-
 module.exports = userModel;
 
 userModel.createUser = createUser;
@@ -22,7 +21,6 @@ function findUserByFacebookId(facebookId) {
 }
 
 function createUser(user) {
-    console.log(user);
     return userModel.create(user);
 }
 
@@ -41,12 +39,14 @@ function findUserById(userId) {
 }
 
 function updateUser(userId, newUser) {
+    console.log(newUser);
     return userModel.update({_id: userId}, {
         $set : {
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             email: newUser.email,
-            phone: newUser.phone
+            phone: newUser.phone,
+            address: newUser.address
         }
     });
 }

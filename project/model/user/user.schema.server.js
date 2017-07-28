@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
     password : {type: String, require:true},
     firstName : String,
     lastName : String,
-    email : String,
+    email : {type: String, require:true},
     gender: {type: String, enum:['Female', 'Male']},
     phone: String,
     dob: Date,
