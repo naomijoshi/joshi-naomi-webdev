@@ -66,6 +66,9 @@
                 .then(function (response) {
                     return response.data;
                 })
+                .catch(function (err) {
+                    return err.message;
+                })
         }
 
         function updateUser(userId, user) {

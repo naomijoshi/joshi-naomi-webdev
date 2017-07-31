@@ -64,6 +64,9 @@
 
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12 custom-pad" >
+            <div ng-show="model.message" class="alert alert-danger">
+                {{model.message}}
+            </div>
             <form>
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -90,7 +93,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="#!/user/{{model.userId}}" class="navbar-brand pull-right">
+        <a href="#!/profile" class="navbar-brand pull-right">
               <span class="glyphicon glyphicon-user">
               </span>
         </a>

@@ -14,7 +14,7 @@
                             <li ng-if="!model.user._id"><a href="#!/login">Login</a></li>
                             <li ng-if="model.user._id"><a href="#!/profile">Profile</a></li>
                             <li ng-if="!model.user._id"><a href="#!/register">Register</a></li>
-                            <li><a ng-click="model.logout()">Logout</a></li>
+                            <li ng-if="model.user._id"><a ng-click="model.logout()">Logout</a></li>
                         </ul>
                     </nav>
                 </div>

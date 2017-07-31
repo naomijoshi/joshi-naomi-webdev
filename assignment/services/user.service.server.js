@@ -9,6 +9,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
+var bcrypt = require("bcrypt-nodejs");
+
+
 
 app.get('/api/user', findUserByCredentials);
 app.post('/api/user', createUser);
@@ -49,6 +52,7 @@ function login(req, res) {
 }
 
 function logout(req, res) {
+    console.log("reaching here");
     req.logOut();
     res.send(200);
 }
@@ -99,10 +103,10 @@ function facebookStrategy(token, refreshToken, profile, done) {
 
 function localStrategy(username, password, done) {
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByCredentials(username)
         .then(
             function(user) {
-                if(user.username === username && user.password === password) {
+                if(user.username === username && bcrypt.compareSync(password, user.password)) {
                     return done(null, user);
                 } else {
                     return done(null, false);
@@ -116,6 +120,7 @@ function localStrategy(username, password, done) {
 
 function register(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModel.createUser(user)
         .then(function (user) {
             req.login(user, function (status) {
@@ -128,9 +133,13 @@ function register(req, res) {
 function findUserByCredentials(req, res) {
     var username = req.query['username'];
     var password = req.query['password'];
-    userModel.findUserByCredentials(username, password)
+    userModel.findUserByCredentials(username)
         .then(function (user) {
+            if(bcrypt.compareSync(password, user.password)) {
                 res.json(user);
+            } else {
+                res.json("Password does not match");
+            }
         })
         .catch(function (err) {
             res.status(404).json("user not found")
@@ -148,6 +157,8 @@ function findUserById(req, res) {
 
 function createUser(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+
     userModel.createUser(user)
         .then(function (user) {
             res.json(user);

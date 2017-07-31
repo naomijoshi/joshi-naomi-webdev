@@ -16,6 +16,9 @@
 
 <div class="container-fluid">
     <div class="custom-pad">
+        <div ng-show="model.message" class="alert alert-danger">
+            {{model.message}}
+        </div>
     <a class="btn btn-block btn-info"
        href="#!user/{{model.userId}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/search"
        ng-if="model.widget.type=='IMAGE'">

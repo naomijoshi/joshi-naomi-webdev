@@ -23,7 +23,7 @@
                         model.message = "Username "+username+ " not found";
                     }
                 }, function (err) {
-                        model.message = "Username "+username+ " not found";
+                        model.message = "Password of "+username+ " does not match";
                 });
         }
     }

@@ -8,7 +8,6 @@
         .controller('sharedController', sharedController);
 
     function sharedController($location, userService, $scope) {
-        var model = this;
         $scope.str = "shared controller";
         $scope.logout = function logout() {
             console.log("controller logout");

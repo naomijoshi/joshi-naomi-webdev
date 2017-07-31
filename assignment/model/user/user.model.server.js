@@ -25,11 +25,7 @@ function createUser(user) {
     return userModel.create(user);
 }
 
-function findUserByCredentials(username, password) {
-    if (username && password) {
-        return userModel.findOne({username: username, password: password});
-    }
-
+function findUserByCredentials(username) {
     if (username) {
         return userModel.findOne({username: username});
     }

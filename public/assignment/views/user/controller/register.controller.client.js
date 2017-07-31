@@ -17,6 +17,7 @@
             }
             userService.findUserByUsername(username)
                 .then(function (data) {
+                    console.log("user in registration", data);
                     if (!data){
                         if (password === verifyPassword){
                             var user = {
@@ -35,6 +36,9 @@
                         model.message = "Username already exists. Please choose another";
 
                     }
+                })
+                .catch(function (err) {
+                    model.message = "Username already exists. Please choose another";
                 });
         }
     }

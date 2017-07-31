@@ -17,11 +17,13 @@
             });
 
         model.createPage = function (page) {
-            if(page){
+            if(page.name){
                 pageService.createPage(model.wid,page)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
                     });
+            } else {
+                model.message = "Name cannot be blank";
             }
         }
     }

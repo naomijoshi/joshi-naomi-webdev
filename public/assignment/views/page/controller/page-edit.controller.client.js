@@ -23,13 +23,15 @@
             });
 
         model.updatePage = function (page) {
-            if(page){
+            if(page.name){
                 pageService.updatePage(page._id,page)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page");
                     });
+            } else {
+                model.message = "Name cannot be blank";
             }
-        }
+        };
 
         model.deletePage = function (pageId) {
             if (pageId) {

@@ -21,11 +21,13 @@
             });
 
         model.updateWebsite = function (website) {
-            if(website){
+            if(website.name){
                 websiteService.updateWebsite(website._id,website)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website");
                     });
+            } else {
+                model.message = "Name cannot blank";
             }
         };
 

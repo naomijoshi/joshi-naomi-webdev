@@ -29,12 +29,14 @@
             });
 
         model.updateWidget = function (widget) {
-            if(widget){
+            if(widget.name){
                 console.log(widget);
                 widgetService.updateWidget(widget._id,widget)
                     .then(function (data) {
                         $location.url("/user/"+model.userId+"/website/"+model.wid+"/page/"+model.pid+"/widget");
                     });
+            } else {
+                model.message = "Name cannot be blank";
             }
         };
 

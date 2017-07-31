@@ -6,14 +6,17 @@
         <input type="text"
                class="form-control"
                ng-model="username"
+               required="true"
                placeholder="username"/>
         <input type="password"
                class="form-control"
                ng-model="password"
+               required="true"
                placeholder="password"/>
         <input type="password"
                class="form-control"
                ng-model="verifyPassword"
+               required="true"
                placeholder="verify password"/>
         <a class="btn btn-primary"
            ng-click="model.register(username,password,verifyPassword)">Register</a>
