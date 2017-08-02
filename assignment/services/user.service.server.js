@@ -115,7 +115,10 @@ function localStrategy(username, password, done) {
             function(err) {
                 if (err) { return done(err); }
             }
-        );
+        )
+        .catch(function (err) {
+            return done(null, false);
+        });
 }
 
 function register(req, res) {
@@ -135,7 +138,7 @@ function findUserByCredentials(req, res) {
     var password = req.query['password'];
     userModel.findUserByCredentials(username)
         .then(function (user) {
-            if(bcrypt.compareSync(password, user.password)) {
+            if(user.username === username) {
                 res.json(user);
             } else {
                 res.json("Password does not match");
