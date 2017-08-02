@@ -41,7 +41,7 @@ if (process.env.MLAB_USERNAME_WEBDEV) {
     facebookConfig.callbackURL = "http://127.0.0.1:3000/auth/facebook/callback"
 }
 passport.use(new LocalStrategy(localStrategy));
-passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+// passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
