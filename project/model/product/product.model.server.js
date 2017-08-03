@@ -1,7 +1,7 @@
 /**
  * Created by Naomi on 7/14/17.
  */
-var userSchema = require("./user.schema.server");
+var userSchema = require("./product.schema.server");
 var mongoose = require('mongoose');
 var userModel = mongoose.model('UserModel', userSchema);
 

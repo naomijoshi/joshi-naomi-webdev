@@ -11,7 +11,9 @@
         var model = this;
         var autocomplete;
         model.user = currentUser;
-
+        if(currentUser) {
+            userService.setCurrentUser(currentUser);
+        }
         autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'),{ types: ['geocode'] });
 
         model.geolocate = function () {

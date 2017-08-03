@@ -73,7 +73,6 @@ function facebookStrategy(token, refreshToken, profile, done) {
                 if(user) {
                     return done(null, user);
                 } else {
-                    console.log("profile",profile);
                     var names = profile.displayName.split(" ");
                     var newFacebookUser = {
                         username: profile.displayName,

@@ -9,21 +9,21 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/' , {
-                templateUrl: "views/user/templates/login.view.client.html",
-                controller: "loginController",
+                templateUrl: "views/home/templates/home.view.client.html",
+                controller: "homeController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkCurrentUser
                 }
             })
-            // .when('/home' , {
-            //     templateUrl : "views/user/templates/login.view.client.html",
-            //     controller : "loginController",
-            //     controllerAs: "model",
-            //     resolve: {
-            //         currentUser: checkCurrentUser
-            //     }
-            // })
+            .when('/login' , {
+                templateUrl : "views/user/templates/login.view.client.html",
+                controller : "loginController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
+            })
             .when('/profile' , {
                 templateUrl : "views/user/templates/profile.view.client.html",
                 controller : "profileController",
@@ -71,7 +71,6 @@
                     deffered.resolve(currentUser);
                 }
             });
-        console.log("checkcurret",deffered.promise);
         return deffered.promise;
     }
 

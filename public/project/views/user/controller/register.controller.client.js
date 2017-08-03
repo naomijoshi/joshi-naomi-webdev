@@ -20,7 +20,7 @@
                     if (!data){
                         if (user.password === user.conPassword){
                             model.user = user;
-                            userService.createUser(model.user)
+                            userService.register(model.user)
                                 .then(function (response) {
                                     $location.url("/profile");
                                 });

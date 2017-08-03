@@ -31,6 +31,10 @@
             $rootScope.currentUser = user;
         }
 
+        function getCurrentUser(){
+          return $rootScope.currentUser;
+        }
+
         function findUserByCredentials(username, password) {
             var url = "/api/user?username=" + username + "&password=" + password;
             return $http.get(url)
@@ -57,6 +61,7 @@
 
         function register(user) {
             var url = "/api/register";
+            user.roles = "USER";
             return $http.post(url, user)
                 .then(function (response) {
                     return response.data;
@@ -68,6 +73,9 @@
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
+                })
+                .catch(function (err) {
+                    return err.message;
                 })
         }
 

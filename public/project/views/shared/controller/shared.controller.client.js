@@ -10,7 +10,6 @@
     function sharedController($location, userService, $scope) {
         $scope.str = "shared controller";
         $scope.logout = function logout() {
-            console.log("controller logout");
             userService
                 .logout()
                 .then(function(response) {

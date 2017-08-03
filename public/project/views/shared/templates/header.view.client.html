@@ -1,9 +1,21 @@
-<div ng-controller="sharedController">
+<div ng-show="currentUser" ng-controller="sharedController">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#!/profile">
+        <a ng-show="currentUser" class="navbar-brand" href="#!/profile">
+            <span class="glyphicon glyphicon-home"></span>
             Home
         </a>
+        <a ng-show="!currentUser" class="navbar-brand" href="/">
+            <span class="glyphicon glyphicon-home"></span>
+            Home
+        </a>
+        <a class="navbar-brand pull-right" href="#!/recommend">
+            Get Quote
+        </a>
+        <a class="navbar-brand pull-right" href="#!/profile">
+            Profile
+        </a>
+
         <!--<a href="#!user/{{model.user._id}}" class="navbar-brand pull-right">-->
             <span class="navbar-brand pull-right">
                 <button ng-click="logout()"

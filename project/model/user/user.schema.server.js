@@ -17,6 +17,15 @@ var userSchema = mongoose.Schema({
     google: {
         id:    String,
         token: String
+    },
+    roles: {type: [String], enum:['USER','APPROVER','ADMIN'], require: true},
+    questions: {
+        income: Number,
+        savings: Number,
+        tobacco: Boolean,
+        debts: Number,
+        expense: Number,
+        householdNo: Number
     }
 }, {collection : "User"});
 
