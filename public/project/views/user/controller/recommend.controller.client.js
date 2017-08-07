@@ -6,12 +6,18 @@
         .module('MyProject')
         .controller('recommendController', recommendController);
 
-    function recommendController($location, userService) {
+    function recommendController($location, $rootScope, productService) {
         var model = this;
-        // if(currentUser) {
-        //     model.questions = currentUser.questions;
-        // }
-        console.log("toggle",model.questions.tobacco);
+        if($rootScope.currentUser) {
+            model.questions = $rootScope.currentUser.questions;
+        }
+        console.log(model.showProduct);
+        model.findRecommendedProduct = function (questions) {
+                productService.findRecommendedProduct(questions)
+                    .then(function (data) {
+                        model.showProduct = data;
+                    })
+        }
 
     }
 })();

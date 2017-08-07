@@ -3,6 +3,6 @@
  */
 (function () {
     angular
-        .module('MyProject',['ngRoute', 'textAngular'])
+        .module('MyProject',['ngRoute', 'textAngular','ui.bootstrap'])
 
 })();

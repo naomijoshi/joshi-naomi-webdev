@@ -1,59 +1,5 @@
-
 <div class="container-fluid">
-    <!--<label class="col-md-12 control-label">Enter your address here</label>-->
-    <!--<div class="input-group" >-->
-        <!--<input id="address" ng-model="address" ng-focus="model.geolocate" type="text" class="form-control" placeholder="Type your address">-->
-        <!--<span class="input-group-btn">-->
-        <!--<a class="btn btn-default" type="button">-->
-            <!--<span class="glyphicon glyphicon-search"></span>-->
-        <!--</a>-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--<div id="map" style="background-color: white;width: 100%;height: 400px">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<form id="foundAddress" class="form-horizontal custom-pad" role="form">-->
-
-        <!--<div class="form-group">-->
-            <!--<label for="street_number" class="col-md-3 control-label">Address 1</label>-->
-            <!--<div class="col-md-6">-->
-                <!--<input type="text" class="form-control" id="street_number" placeholder="street address">-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="route" class="col-md-3 control-label">Address 2</label>-->
-            <!--<div class="col-md-6">-->
-                <!--<input type="text" class="form-control" id="route" placeholder="street address">-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="locality" class="col-md-3 control-label">City</label>-->
-            <!--<div class="col-md-6">-->
-                <!--<input type="text" class="form-control" id="locality" placeholder="city">-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="form-group">-->
-            <!--<label for="administrative_area_level_1" class="col-md-3 control-label">State</label>-->
-            <!--<div class="col-md-6">-->
-                <!--<input type="text" class="form-control" id="administrative_area_level_1" placeholder="state">-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="postal_code" class="col-md-3 control-label">Zip Code</label>-->
-            <!--<div class="col-md-6">-->
-                <!--<input type="text" class="form-control" id="postal_code" placeholder="zip code">-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="country" class="col-md-3 control-label">Country</label>-->
-            <!--<div class="col-md-6">-->
-                <!--<input type="text" class="form-control" id="country" placeholder="country">-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</form>-->
-    <div class="panel-group custom-pad" id="accordion">
+    <div ng-hide="model.showProduct" class="panel-group" id="accordion">
         <div class="panel panel-success">  <!-- accordion 2 -->
 
             <div class="panel-heading">
@@ -117,10 +63,25 @@
                 <h4 class="panel-title">Have you used tobacco, nicotine or any nicotine substitution products in any form in the last 5 years? </h4>
             </div>
             <div class="panel-body black">
-                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" ng-model="model.questions.tobacco">
+                <input type="checkbox" checked data-toggle="toggle" ng-model="model.questions.tobacco">
             </div>
         </div>
+        <div class="custom-pad">
+            <button ng-click="model.findRecommendedProduct(model.questions)" class="btn btn-success">Get a Price</button>
+        </div>
+    </div>
+    <div ng-show="model.showProduct" class="panel-group" id="showproduct">
+        <div class="panel panel-success">  <!-- accordion 2 -->
 
-
+            <div class="panel-heading">
+                Recommended Product
+            </div>
+            <div class="panel-body black">
+                {{model.showProduct}}
+            </div>
+        </div>
+        <div class="custom-pad">
+            <button class="btn btn-success">Buy</button>
+        </div>
     </div>
 </div>

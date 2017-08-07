@@ -32,6 +32,14 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/dashboard' , {
+                templateUrl : "views/user/templates/dashboard.view.client.html",
+                controller : "dashboardController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when('/register' , {
                 templateUrl : "views/user/templates/register.view.client.html",
                 controller : "registerController",
@@ -41,6 +49,14 @@
                 templateUrl : "views/user/templates/recommend.view.client.html",
                 controller : "recommendController",
                 controllerAs: "model"
+            })
+            .when('/application' , {
+                templateUrl : "views/policy/templates/policy-new.view.client.html",
+                controller : "policyNewController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
 
     }

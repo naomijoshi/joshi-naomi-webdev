@@ -13,16 +13,16 @@ var bcrypt = require("bcrypt-nodejs");
 
 
 
-app.get('/api/user', findUserByCredentials);
-app.post('/api/user', createUser);
-app.get('/api/user/:userId', findUserById);
-app.put('/api/user/:userId', updateUser);
-app.delete('/api/user/:userId', deleteUser);
-app.post  ('/api/login', passport.authenticate('local'), login);
-app.post('/api/logout', logout);
-app.post('/api/register', register);
-app.get   ('/api/checkLoggedIn', checkLoggedIn);
-app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+app.get('/api/project/user', findUserByCredentials);
+app.post('/api/project/user', createUser);
+app.get('/api/project/user/:userId', findUserById);
+app.put('/api/project/user/:userId', updateUser);
+app.delete('/api/project/user/:userId', deleteUser);
+app.post  ('/api/project/login', passport.authenticate('local'), login);
+app.post('/api/project/logout', logout);
+app.post('/api/project/register', register);
+app.get   ('/api/project/checkLoggedIn', checkLoggedIn);
+app.get ('/auth/google', passport.authenticate('facebook', { scope : 'email' }));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {

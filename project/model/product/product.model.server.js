@@ -1,70 +1,36 @@
 /**
  * Created by Naomi on 7/14/17.
  */
-var userSchema = require("./product.schema.server");
+var productSchema = require("./product.schema.server");
 var mongoose = require('mongoose');
-var userModel = mongoose.model('UserModel', userSchema);
+var productModel = mongoose.model('ProductModel', productSchema);
 
 
-module.exports = userModel;
+module.exports = productModel;
 
-userModel.createUser = createUser;
-userModel.findUserByCredentials = findUserByCredentials;
-userModel.findUserById = findUserById;
-userModel.updateUser = updateUser;
-userModel.deleteUser = deleteUser;
-userModel.addWebsite = addWebsite;
-userModel.removeWebsite = removeWebsite;
-userModel.findUserByFacebookId=findUserByFacebookId;
+productModel.findProductById = findProductById;
+productModel.createProduct = createProduct;
+productModel.findProductByTitle = findProductByTitle;
+productModel.deleteProduct=deleteProduct;
+productModel.updateProduct=updateProduct;
 
-function findUserByFacebookId(facebookId) {
-    return userModel.findOne({'facebook.id': facebookId});
+function findProductById(productId) {
+   return productModel.findById(productId)
 }
 
-function createUser(user) {
-    return userModel.create(user);
+function createProduct(product) {
+   return productModel.create(product)
 }
 
-function findUserByCredentials(username) {
-    if (username) {
-        return userModel.findOne({username: username});
-    }
+function findProductByTitle(title) {
+   return productModel.find({productTitle:title})
 }
 
-function findUserById(userId) {
-    return userModel.findById(userId);
+function deleteProduct(productId) {
+   return productModel.remove({_id:productId});
 }
 
-function updateUser(userId, newUser) {
-    return userModel.update({_id: userId}, {
-        $set : {
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            email: newUser.email,
-            phone: newUser.phone
-        }
-    });
+function updateProduct(productId,product) {
+   return productModel.update({_id:productId},{$set:product})
 }
 
-function deleteUser(userId) {
-    return userModel.remove({_id: userId});
-}
-
-function removeWebsite(userId, websiteId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            var index = user._websites.indexOf(websiteId);
-            user._websites.splice(index, 1);
-            return user.save();
-        });
-}
-
-function addWebsite(userId, websiteId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            user._websites.push(websiteId);
-            return user.save();
-        })
-}

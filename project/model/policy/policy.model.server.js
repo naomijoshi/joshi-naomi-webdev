@@ -3,7 +3,7 @@
  */
 var userSchema = require("./user.schema.server");
 var mongoose = require('mongoose');
-var userModel = mongoose.model('CustomerModel', userSchema);
+var userModel = mongoose.model('UserModel', userSchema);
 
 
 module.exports = userModel;

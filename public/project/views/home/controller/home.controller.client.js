@@ -21,7 +21,8 @@
                 .then(function (data) {
                     if (data) {
                         console.log("user coming back from service", data);
-                        $location.url("/profile");
+                        userService.setCurrentUser(data);
+                        $location.url("/dashboard");
                     } else {
                         model.message = "Username "+username+ " not found";
                     }
