@@ -12,10 +12,12 @@
             userService.setCurrentUser(currentUser);
         }
         model.user = currentUser;
-        // if(model.user) {
-        //     userService.setCurrentUser(model.user);
-        // }
-        model.currentPage = 4;
-        model.totalItems=7;
+        function init() {
+            wizardScript();
+        }
+        init();
+        model.createPolicy = function (policy) {
+            console.log(policy);
+        }
     }
 })();

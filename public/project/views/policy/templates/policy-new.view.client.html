@@ -1,12 +1,163 @@
+
+<!--HTML-->
 <div class="container-fluid">
     <div class="custom-pad">
-        <label>Do want a product recommendation? <a href="#!recommend" class="btn btn-success">Get Quote</a></label>
+        <label><h3>Do want a product recommendation?</h3> <a href="#!recommend" class="btn btn-success">Get Quote</a></label>
         <br>
         <label>Or continue with application</label>
     </div>
-    <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Library</a></li>
-        <li class="active">Data</li>
-    </ol>
+    <div class="stepwizard col-md-offset-3">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                <p>Step 1</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                <p>Step 2</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                <p>Step 3</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                <p>Step 4</p>
+            </div>
+        </div>
+    </div>
+
+    <form role="form" action="" method="post">
+        <div class="row setup-content" id="step-1">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 1 (Policy Details)</h3>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">First Name of Insured</label>
+                        <input  maxlength="100" type="text" ng-model="model.policy.firstName" required="required" class="form-control" placeholder="Enter First Name"  />
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Last Name of Insured</label>
+                        <input maxlength="100" type="text" ng-model="model.policy.lastName"required="required" class="form-control" placeholder="Enter Last Name" />
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Choose Product</label>
+                        <div class="dropdown">
+                            <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                                <!--Product-->
+                                <!--<span class="caret"></span>-->
+                            <!--</button>-->
+                            <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+                                <!--<li><a href="#">Action</a></li>-->
+                                <!--<li><a href="#">Another action</a></li>-->
+                                <!--<li><a href="#">Something else here</a></li>-->
+                            <!--</ul>-->
+                            <select id="type" class="form-control" ng-model="model.policy._product">
+                                <option value=''>---Please select a Product---</option> <!-- not selected / blank option -->
+                                <option value='HEADING'>Header</option>
+                                <option value='IMAGE'>Image</option>
+                                <option value=YOUTUBE>Youtube</option>
+                                <option value=HTML>HTML</option>
+                                <option value=TEXT>Text</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Payment Frequency</label>
+                        <div class="dropdown">
+                            <select id="payment" class="form-control" ng-model="model.policy.paymentFreq">
+                                <option value=''>---Please select Payment Cycle---</option> <!-- not selected / blank option -->
+                                <option value='Monthly'>Monthly</option>
+                                <option value='Quarterly'>Quarterly</option>
+                                <option value='Annually'>Annually</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content" id="step-2">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 2 (Beneficiary Details)</h3>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">First Name</label>
+                        <input  maxlength="100" type="text" ng-model="model.policy.beneficiary.firstName" required="required" class="form-control" placeholder="Enter First Name"  />
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Last Name</label>
+                        <input maxlength="100" type="text" ng-model="model.policy.beneficiary.lastName" required="required" class="form-control" placeholder="Enter Last Name" />
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Address</label>
+                        <input id="address" required="required" ng-model="model.policy.beneficiary.address" class="form-control" placeholder="Enter your address" >
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Phone</label>
+                        <input  maxlength="100" type="text" ng-model="model.policy.beneficiary.phone" required="required" class="form-control" placeholder="Enter phone"  />
+                    </div>
+                    <div class="form-group custom-pad">
+                        <label class="control-label">Email</label>
+                        <input  maxlength="100" type="email" ng-model="model.policy.beneficiary.email" required="required" class="form-control" placeholder="Enter email"  />
+                    </div>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content" id="step-3">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 3 (Health Questions)</h3>
+                    <div class="form-group">
+                        <label><h4>Select 'Yes' If you have had treatment or medication for any of the following</h4></label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Arthritis</label>
+                        <div class="radio">
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.arthritis" value="true" name="arthritis">Yes</label>
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.arthritis" value="false" name="arthritis">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Blood disorder</label>
+                        <div class="radio">
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.blood" value="true" name="blood">Yes</label>
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.blood" value="false" name="blood">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Epilepsy</label>
+                        <div class="radio">
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.epilepsy" value="true" name="epilepsy">Yes</label>
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.epilepsy" value="false" name="epilepsy">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Hepatitis</label>
+                        <div class="radio">
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.hepatitis" value="true" name="hepatitis">Yes</label>
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.hepatitis" value="false" name="hepatitis">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Diabetes</label>
+                        <div class="radio">
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.diabetes" value="true" name="diabetes">Yes</label>
+                            <label class=".radio-inline"><input type="radio" ng-model="model.policy.questions.diabetes" value="false" name="diabetes">No</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content" id="step-4">
+            <div class="col-xs-6 col-md-offset-3">
+                <div class="col-md-12">
+                    <h3> Step 4</h3>
+                    <button ng-click="model.createPolicy(model.policy)" class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
