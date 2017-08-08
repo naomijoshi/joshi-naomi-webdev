@@ -39,6 +39,28 @@
                         <input type="text" class="form-control" id="lastname" ng-model="model.user.lastName" placeholder="Last Name">
                     </div>
                 </div>
+                <div class="form-group dropdown">
+                    <label for="gender" class="col-md-3 control-label">Gender</label>
+                    <div class="col-md-6">
+                    <select id="gender" class="form-control" ng-model="model.user.gender">
+                        <option value=''>---Please select your Gender---</option> <!-- not selected / blank option -->
+                        <option value='Female'>Female</option>
+                        <option value='Male'>Male</option>
+                        <option value='Other'>Other</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dob" class="col-md-3 control-label">Date of Birth</label>
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            <input id="dob"type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="model.user.dob" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+                        </p>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="phone" class="col-md-3 control-label">Phone</label>
                     <div class="col-md-6">
