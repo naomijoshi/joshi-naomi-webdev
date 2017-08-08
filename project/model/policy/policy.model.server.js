@@ -1,65 +1,30 @@
 /**
  * Created by Naomi on 7/14/17.
  */
-var userSchema = require("./user.schema.server");
+var policySchema = require("./policy.schema.server");
 var mongoose = require('mongoose');
-var userModel = mongoose.model('UserModel', userSchema);
+var policyModel = mongoose.model('PolicyModel', policySchema);
 
 
-module.exports = userModel;
+module.exports = policyModel;
 
-userModel.createUser = createUser;
-userModel.findUserByCredentials = findUserByCredentials;
-userModel.findUserById = findUserById;
-userModel.updateUser = updateUser;
-userModel.deleteUser = deleteUser;
-userModel.addWebsite = addWebsite;
-userModel.removeWebsite = removeWebsite;
-userModel.findUserByFacebookId=findUserByFacebookId;
+policyModel.createPolicy = createPolicy;
+policyModel.findPolicybyId=findPolicybyId;
+policyModel.findPoliciesOfUser=findPoliciesOfUser;
+policyModel.findApplicationsOfUser=findApplicationsOfUser;
 
-function findUserByFacebookId(facebookId) {
-    return userModel.findOne({'facebook.id': facebookId});
+function createPolicy(policy) {
+    return policyModel.create(policy);
 }
 
-function createUser(user) {
-    return userModel.create(user);
+function findPolicybyId(policyId) {
+    return policyModel.findbyId(policyId);
 }
 
-function findUserByCredentials(username) {
-    if (username) {
-        return userModel.findOne({username: username});
-    }
+function findPoliciesOfUser(userId) {
+    return policyModel.find({_user: userId,status:"Approved"});
 }
 
-function findUserById(userId) {
-    return userModel.findById(userId);
-}
-
-function updateUser(userId, newUser) {
-    return userModel.update({_id: userId}, {
-        $set : newUser
-    });
-}
-
-function deleteUser(userId) {
-    return userModel.remove({_id: userId});
-}
-
-function removeWebsite(userId, websiteId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            var index = user._websites.indexOf(websiteId);
-            user._websites.splice(index, 1);
-            return user.save();
-        });
-}
-
-function addWebsite(userId, websiteId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            user._websites.push(websiteId);
-            return user.save();
-        })
+function findApplicationsOfUser(userId) {
+    return policyModel.find({_user: userId,status:"Submitted"});
 }

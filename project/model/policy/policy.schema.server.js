@@ -9,7 +9,7 @@ var policySchema = mongoose.Schema({
     lastName: {type:String, require:true},
     _product : {type: mongoose.Schema.ObjectId, ref : 'ProductModel'},
     paymentFreq : {type:String, enum:['Monthly','Quarterly','Annually']},
-    status: {type:String, enum:['Submitted','In Progress','Approved']},
+    status: {type:String, enum:['Submitted','Approved']},
     dateCreated : {type: Date, default: Date.now()},
     _employee: {type: mongoose.Schema.ObjectId, ref : 'CustomerModel'},
     beneficiary: {

@@ -13,8 +13,8 @@ userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserById = findUserById;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
-userModel.addWebsite = addWebsite;
-userModel.removeWebsite = removeWebsite;
+userModel.addPolicy = addPolicy;
+userModel.removePolicy = removePolicy;
 userModel.findUserByFacebookId=findUserByFacebookId;
 
 function findUserByFacebookId(facebookId) {
@@ -45,21 +45,21 @@ function deleteUser(userId) {
     return userModel.remove({_id: userId});
 }
 
-function removeWebsite(userId, websiteId) {
+function removePolicy(userId, policyId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            var index = user._websites.indexOf(websiteId);
-            user._websites.splice(index, 1);
+            var index = user._policies.indexOf(policyId);
+            user._policies.splice(index, 1);
             return user.save();
         });
 }
 
-function addWebsite(userId, websiteId) {
+function addPolicy(userId, policyId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user._websites.push(websiteId);
+            user._policies.push(policyId);
             return user.save();
         })
 }

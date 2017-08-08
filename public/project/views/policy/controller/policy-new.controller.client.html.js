@@ -6,18 +6,25 @@
         .module('MyProject')
         .controller('policyNewController', policyNewController);
 
-    function policyNewController($location, userService, currentUser) {
+    function policyNewController($location, productService, policyService,currentUser) {
         var model = this;
-        if(currentUser) {
+        model.user = currentUser;
+        if (currentUser){
             userService.setCurrentUser(currentUser);
         }
-        model.user = currentUser;
         function init() {
             wizardScript();
+            productService.getAllProducts()
+                .then(function (data) {
+                    model.products = data;
+                })
         }
         init();
         model.createPolicy = function (policy) {
-            console.log(policy);
+            policyService.createPolicy(model.user._id,policy)
+                .then(function (data) {
+                    model.message = "You Application is successfully submitted for approval";
+                })
         }
     }
 })();

@@ -9,6 +9,7 @@ var userModel = require('../model/user/user.model.server');
 var passport = require('passport');
 
 app.post('/api/product/recommend', findRecommendedProduct);
+app.get('/api/product',getAllProducts);
 
 function findRecommendedProduct(req, res) {
     var questions = req.body.questions;
@@ -54,4 +55,14 @@ function findRecommendedProduct(req, res) {
                 res.json(err);
             })
     }
+}
+
+function getAllProducts(req, res) {
+    productModel.findAllProducts()
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
+        })
 }

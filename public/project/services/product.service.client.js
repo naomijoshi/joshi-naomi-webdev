@@ -23,8 +23,17 @@
                 })
         }
 
+        function getAllProducts() {
+            var url = "/api/product";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
-            findRecommendedProduct:findRecommendedProduct
+            findRecommendedProduct:findRecommendedProduct,
+            getAllProducts:getAllProducts
         }
     }
 })();

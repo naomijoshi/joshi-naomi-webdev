@@ -13,17 +13,22 @@ productModel.createProduct = createProduct;
 productModel.findProductByTitle = findProductByTitle;
 productModel.deleteProduct=deleteProduct;
 productModel.updateProduct=updateProduct;
+productModel.findAllProducts=findAllProducts;
 
 function findProductById(productId) {
-   return productModel.findById(productId)
+   return productModel.findById(productId);
+}
+
+function findAllProducts() {
+    return productModel.find();
 }
 
 function createProduct(product) {
-   return productModel.create(product)
+   return productModel.create(product);
 }
 
 function findProductByTitle(title) {
-   return productModel.find({productTitle:title})
+   return productModel.find({productTitle:title});
 }
 
 function deleteProduct(productId) {
@@ -31,6 +36,6 @@ function deleteProduct(productId) {
 }
 
 function updateProduct(productId,product) {
-   return productModel.update({_id:productId},{$set:product})
+   return productModel.update({_id:productId},{$set:product});
 }
 
