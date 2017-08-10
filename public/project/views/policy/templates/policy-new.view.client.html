@@ -10,6 +10,14 @@
         {{model.message}}
         <a href="#!/dashboard" class="btn btn-success">Go to dashboard</a>
     </div>
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.message}}
+        <a href="#!/dashboard" class="btn btn-success">Go to dashboard and try again</a>
+    </div>
+    <div ng-show="model.message1" class="alert alert-success">
+        {{model.message}}
+        <a href="#!/profile" class="btn btn-success">Go to profile</a>
+    </div>
     <div class="stepwizard col-md-offset-3">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
@@ -49,7 +57,7 @@
                         <div class="dropdown">
                             <select id="type" class="form-control" ng-model="model.policy._product">
                                 <option value=''>---Please select a Product---</option> <!-- not selected / blank option -->
-                                <option ng-repeat="product in model.products" value='{{product._id}}'>{{product.productTitle}},Coverage:${{product.covergae}},Premium(Monthly):${{product.premium}}</option>
+                                <option ng-repeat="product in model.products" value='{{product._id}}'>{{product.productTitle}},Coverage:${{product.coverage}},Premium(Monthly):${{product.premium}}</option>
                             </select>
                         </div>
                     </div>
@@ -146,7 +154,8 @@
             <div class="col-xs-6 col-md-offset-3">
                 <div class="col-md-12">
                     <h3> Step 4</h3>
-                    <button ng-click="model.createPolicy(model.policy)" class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                    <button ng-hide="model.isUpdate" ng-click="model.createPolicy(model.policy)" class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                    <button ng-show="model.isUpdate" ng-click="model.updatePolicy(model.policy)" class="btn btn-success btn-lg pull-right" type="submit">Update</button>
                 </div>
             </div>
         </div>

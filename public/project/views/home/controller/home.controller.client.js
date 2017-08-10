@@ -20,9 +20,11 @@
             userService.login(username,password)
                 .then(function (data) {
                     if (data) {
+                        userService.setCurrentUser(data)
+                            .then(function (data) {
+                                $location.url("/dashboard");
+                            });
                         console.log("user coming back from service", data);
-                        userService.setCurrentUser(data);
-                        $location.url("/dashboard");
                     } else {
                         model.message = "Username "+username+ " not found";
                     }

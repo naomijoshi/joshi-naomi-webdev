@@ -15,6 +15,7 @@ var bcrypt = require("bcrypt-nodejs");
 
 app.get('/api/project/user', findUserByCredentials);
 app.post('/api/project/user', createUser);
+app.get('/api/project/checkAdmin',checkAdmin);
 app.get('/api/project/user/:userId', findUserById);
 app.put('/api/project/user/:userId', updateUser);
 app.delete('/api/project/user/:userId', deleteUser);
@@ -59,6 +60,14 @@ function logout(req, res) {
 
 function checkLoggedIn(req, res) {
     if (req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.json("0");
+    }
+}
+
+function checkAdmin(req, res) {
+    if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN')>-1) {
         res.json(req.user);
     } else {
         res.json("0");

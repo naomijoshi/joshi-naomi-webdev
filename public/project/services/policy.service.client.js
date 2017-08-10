@@ -20,8 +20,49 @@
         }
 
         function getAllPolicies() {
-            var url = "/api/product";
+            var url = "/api/policy";
             return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function findPoliciesOfUser(userId) {
+            var url = "/api/policy/user/" + userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function findApplicationsOfUser(userId) {
+            var url = "/api/application/user/" + userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function findPolicyById(policyId) {
+            var url = '/api/policy/'+policyId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function updatePolicy(policyId, policy) {
+            var url = '/api/policy/'+policyId;
+            var body = policy;
+            return $http.put(url,body)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function deletePolicy(policyId) {
+            var url = '/api/policy/'+policyId;
+            return $http.delete(url)
                 .then(function (response) {
                     return response.data;
                 })
@@ -29,7 +70,12 @@
 
         return api = {
             createPolicy:createPolicy,
-            getAllPolicies:getAllPolicies
+            getAllPolicies:getAllPolicies,
+            findPoliciesOfUser:findPoliciesOfUser,
+            findApplicationsOfUser:findApplicationsOfUser,
+            findPolicyById:findPolicyById,
+            updatePolicy:updatePolicy,
+            deletePolicy:deletePolicy
         }
     }
 })();

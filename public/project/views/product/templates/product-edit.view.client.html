@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row custom-pad">
+        <div class="col-md-4 col-sm-4 visible-lg visible-md visible-sm full-page border">
+            <ul class="list-group">
+                <li ng-repeat="product in model.products" class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-9">
+                            <a href="#!/product/{{product._id}}">
+                                {{product.productTitle}}
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xs-3">
+                            <a href="#!/product/{{product._id}}">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           placeholder="Page Name"
+                           ng-model="model.product._id">
+                </div>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text"
+                           class="form-control"
+                           id="title"
+                           ng-model="model.page.description"
+                           placeholder="Page Title">
+                </div>
+            </form>
+            <a ng-show="model.isUpdate" ng-click="model.updateProduct(model.product)" class="btn btn-primary">
+                Update
+            </a>
+            <a ng-show="model.isUpdate" ng-click="model.deleteProduct(model.product._id)" class="btn btn-danger">
+                Delete
+            </a>
+            <a ng-hide="model.isUpdate" ng-click="model.createProduct(model.product)" class="btn btn-success">
+                Add
+            </a>
+            <a href="#!/product" class="btn btn-success">
+                <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+                Back
+            </a>
+        </div>
+    </div>
+
+</div>

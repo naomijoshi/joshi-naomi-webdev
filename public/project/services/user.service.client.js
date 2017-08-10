@@ -6,7 +6,7 @@
         .module('MyProject')
         .factory('userService', userService)
 
-    function userService($http,$rootScope) {
+    function userService($q, $http,$rootScope) {
 
         function login(username,password) {
             var user = {
@@ -28,7 +28,10 @@
         }
 
         function setCurrentUser(user){
-            $rootScope.currentUser = user;
+            var deffered = $q.defer();
+             $rootScope.currentUser = user;
+             deffered.resolve(user);
+             return deffered.promise;
         }
 
         function getCurrentUser(){
@@ -104,6 +107,14 @@
                 })
         }
 
+        function checkAdmin() {
+            var url = "/api/project/checkAdmin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
             createUser : createUser,
             findUserById : findUserById,
@@ -115,7 +126,8 @@
             logout:logout,
             checkLoggedIn:checkLoggedIn,
             register:register,
-            setCurrentUser:setCurrentUser
+            setCurrentUser:setCurrentUser,
+            checkAdmin:checkAdmin
         };
     }
 })();

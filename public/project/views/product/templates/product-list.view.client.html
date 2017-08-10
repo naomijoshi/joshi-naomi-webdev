@@ -1,0 +1,32 @@
+<div class="container-fluid">
+<ul class="list-group custom-pad">
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-md-6 col-xs-9">
+                <a href="#!/product/new">
+                    <label>Add new Product</label>
+                </a>
+            </div>
+            <div class="col-md-6 col-xs-3">
+                <a href="#!/product/new">
+                    <span class="glyphicon glyphicon-plus pull-right cog"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+    <li ng-repeat="product in model.products" class="list-group-item">
+        <div class="row">
+            <div class="col-md-6 col-xs-9">
+                <a href="#!/product/{{product._id}}">
+                    {{product.productTitle}}
+                </a>
+            </div>
+            <div class="col-md-6 col-xs-3">
+                <a href="#!/product/{{product._id}}">
+                    <span class="glyphicon glyphicon-cog pull-right cog"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+</ul>
+</div>

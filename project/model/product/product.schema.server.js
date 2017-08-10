@@ -12,7 +12,7 @@ var productSchema = mongoose.Schema({
     expiryAge: {type: Number},
     faceAmtMax: Number,
     faceAmtMin: Number,
-    covergae: Number,
+    coverage: Number,
     dateCreated : {type: Date, default: Date.now()},
 }, {collection : "Product"});
 

@@ -3,7 +3,7 @@
         <div class="col-lg-3">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
-                    <img src="../../../../project/images/naomi.jpg" class="img-responsive" alt="">
+                    <img src="../../../../project/images/profile_male.jpg" class="img-responsive" alt="">
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
@@ -21,19 +21,24 @@
                                 Overview </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#!/Profile">
+                                <i class="glyphicon glyphicon-picture"></i>
+                                Profile </a>
+                        </li>
+                        <li ng-show="currentUser.roles.indexOf('ADMIN')>-1">
+                            <a href="#!/user" target="_blank">
                                 <i class="glyphicon glyphicon-user"></i>
-                                Account Settings </a>
+                                 Manage Users</a>
                         </li>
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="glyphicon glyphicon-ok"></i>
-                                Tasks </a>
+                        <li ng-show="currentUser.roles.indexOf('ADMIN')>-1">
+                            <a href="#!/user" target="_blank">
+                                <i class="glyphicon glyphicon-user  "></i>
+                                Manage Approvers</a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i>
-                                Help </a>
+                        <li ng-show="currentUser.roles.indexOf('ADMIN')>-1">
+                            <a href="#!/product">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                                Manage Products </a>
                         </li>
                     </ul>
                 </div>
@@ -48,17 +53,72 @@
                                 Start new Application
                             </a>
                         </div>
-                        <ul class="custom-pad">
-                            <div ng-include="'views/policy/templates/policy-new.view.client.html'"></div>
-                            <li>Application 1</li>
-                            <li>Application 2</li>
-
-                        </ul>
+                        <div ng-repeat="app in model.applications" class="panel-group custom-pad">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-target="#{{app._id}}">Application ID: {{app._id}}
+                                        <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                                    </h4>
+                                </div>
+                                <div id="{{app._id}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Insured name : {{app.firstName}} {{app.lastName}}<br>
+                                        Product Title: {{app._product.productTitle}}<br>
+                                        Payment frequency: {{app.paymentFreq}}<br>
+                                        Product Premium: ${{app._product.premium}}<br>
+                                        Product Coverage: ${{app._product.coverage}}
+                                        <div class="custom-pad">
+                                            <a href="#!/application/{{app._id}}" class="btn btn-primary">
+                                                Update Application
+                                            </a>
+                                            <button ng-click="model.cancelPolicy(app._id)" class="btn btn-danger" name="remove_levels" value="delete">
+                                                Withdraw Application
+                                            </button>
+                                            <div id="confirm" class="modal hide fade">
+                                                <div class="modal-body">
+                                                    Are you sure?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Yes</button>
+                                                    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </uib-tab>
                     <uib-tab index="1" heading="My Policies" class="black">
-
+                        <div ng-repeat="policy in model.policies" class="panel-group custom-pad">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-target="#{{policy._id}}">Policy ID: {{policy._id}}
+                                            <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                                    </h4>
+                                </div>
+                                <div id="{{policy._id}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Insured name : {{policy.firstName}} {{policy.lastName}}<br>
+                                        Product Title: {{policy._product.productTitle}}<br>
+                                        Payment frequency: {{policy.paymentFreq}}<br>
+                                        Product Premium: ${{policy._product.premium}}<br>
+                                        Product Coverage: ${{policy._product.coverage}}<br>
+                                        <div class="custom-pad">
+                                            <a href="#!/application/{{policy._id}}" class="btn btn-primary">
+                                                Update Policy
+                                            </a>
+                                            <a ng-click="model.cancelPolicy(app._id)" class="btn btn-danger">
+                                                Terminate Policy
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </uib-tab>
-
                 </uib-tabset>
             </div>
         </div>

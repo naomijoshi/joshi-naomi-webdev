@@ -49,6 +49,7 @@ function removePolicy(userId, policyId) {
     return userModel
         .findById(userId)
         .then(function (user) {
+            console.log("in remove policy",userId,policyId);
             var index = user._policies.indexOf(policyId);
             user._policies.splice(index, 1);
             return user.save();

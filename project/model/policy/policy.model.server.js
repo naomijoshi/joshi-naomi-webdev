@@ -9,22 +9,36 @@ var policyModel = mongoose.model('PolicyModel', policySchema);
 module.exports = policyModel;
 
 policyModel.createPolicy = createPolicy;
-policyModel.findPolicybyId=findPolicybyId;
+policyModel.findPolicyById=findPolicyById;
 policyModel.findPoliciesOfUser=findPoliciesOfUser;
 policyModel.findApplicationsOfUser=findApplicationsOfUser;
+policyModel.updatePolicy = updatePolicy;
+policyModel.deletePolicy=deletePolicy;
 
 function createPolicy(policy) {
     return policyModel.create(policy);
 }
 
-function findPolicybyId(policyId) {
-    return policyModel.findbyId(policyId);
+function findPolicyById(policyId) {
+    return policyModel.findById(policyId);
 }
 
 function findPoliciesOfUser(userId) {
-    return policyModel.find({_user: userId,status:"Approved"});
+    return policyModel.find({_user: userId,status:"Approved"})
+        .populate('_product')
+        .exec();
 }
 
 function findApplicationsOfUser(userId) {
-    return policyModel.find({_user: userId,status:"Submitted"});
+    return policyModel.find({_user: userId,status:"Submitted"})
+        .populate('_product')
+        .exec();
+}
+
+function updatePolicy(policyId, newPolicy) {
+    return policyModel.update({_id:policyId},{$set:newPolicy});
+}
+
+function deletePolicy(policyId) {
+    return policyModel.remove({_id:policyId});
 }

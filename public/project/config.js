@@ -58,6 +58,38 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/application/:policyId' , {
+                templateUrl : "views/policy/templates/policy-new.view.client.html",
+                controller : "policyNewController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/product' , {
+                templateUrl : "views/product/templates/product-list.view.client.html",
+                controller : "productListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/product/:productId' , {
+                templateUrl : "views/product/templates/product-edit.view.client.html",
+                controller : "productEditController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/product/new' , {
+                templateUrl : "views/product/templates/product-edit.view.client.html",
+                controller : "productEditController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
 
     }
 
@@ -75,6 +107,21 @@
         console.log("checklogged",deffered.promise);
 
         return deffered.promise;
+    }
+
+    function checkAdmin($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkAdmin()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                    $location.url('/');
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
     }
 
     function checkCurrentUser($q, userService) {

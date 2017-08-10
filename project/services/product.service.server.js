@@ -10,6 +10,13 @@ var passport = require('passport');
 
 app.post('/api/product/recommend', findRecommendedProduct);
 app.get('/api/product',getAllProducts);
+app.get('/api/product/:productId',findProductById);
+app.put('/api/product/:productId',updateProduct);
+app.delete('/api/product/:productId',deleteProduct);
+app.post('/api/product',createProduct);
+
+
+
 
 function findRecommendedProduct(req, res) {
     var questions = req.body.questions;
@@ -63,6 +70,51 @@ function getAllProducts(req, res) {
             res.json(data);
         })
         .catch(function (err) {
+            res.json(err);
+        })
+}
+
+function findProductById(req,res) {
+    var productId = req.params["productId"];
+    productModel.findProductById(productId)
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
+        })
+}
+
+function updateProduct(req,res) {
+    var productId = req.params["productId"];
+    var product = req.body;
+    productModel.updateProduct(productId,product)
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (data) {
+            res.json(err);
+        })
+}
+
+function deleteProduct(req,res) {
+    var productId = req.params["productId"];
+    productModel.deleteProduct(productId)
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (data) {
+            res.json(err);
+        })
+}
+
+function createProduct(req,res) {
+    var product = req.body;
+    productModel.createProduct(product)
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (data) {
             res.json(err);
         })
 }
