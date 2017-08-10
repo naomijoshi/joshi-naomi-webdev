@@ -5,7 +5,7 @@
 var app = require('../../server');
 var userModel = require('../model/user/user.model.server');
 
-var passport = require('passport');
+var passport_project = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -19,14 +19,14 @@ app.get('/api/project/checkAdmin',checkAdmin);
 app.get('/api/project/user/:userId', findUserById);
 app.put('/api/project/user/:userId', updateUser);
 app.delete('/api/project/user/:userId', deleteUser);
-app.post  ('/api/project/login', passport.authenticate('local'), login);
+app.post ('/api/project/login', passport_project.authenticate('localproject'), login);
 app.post('/api/project/logout', logout);
 app.post('/api/project/register', register);
 app.get   ('/api/project/checkLoggedIn', checkLoggedIn);
-app.get ('/auth/google', passport.authenticate('facebook', { scope : 'email' }));
+app.get ('/auth/google', passport_project.authenticate('facebook', { scope : 'email' }));
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
+    passport_project.authenticate('facebook', {
         successRedirect: '/assignment/index.html#!/profile',
         failureRedirect: '/assignment/index.html#!/login'
     }));
@@ -41,10 +41,10 @@ if (process.env.MLAB_USERNAME_WEBDEV) {
 } else {
     facebookConfig.callbackURL = "http://127.0.0.1:3000/auth/facebook/callback"
 }
-passport.use(new LocalStrategy(localStrategy));
-passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-passport.serializeUser(serializeUser);
-passport.deserializeUser(deserializeUser);
+passport_project.use('localproject',new LocalStrategy(localStrategy));
+// passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+passport_project.serializeUser(serializeUser);
+passport_project.deserializeUser(deserializeUser);
 
 function login(req, res) {
     console.log(req.session);

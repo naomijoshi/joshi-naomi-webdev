@@ -64,7 +64,7 @@
 
         function register(user) {
             var url = "/api/project/register";
-            user.roles = "USER";
+            user.roles = "ADMIN";
             return $http.post(url, user)
                 .then(function (response) {
                     return response.data;

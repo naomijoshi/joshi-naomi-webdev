@@ -4,6 +4,7 @@
 var app = require('../../server');
 var productModel = require('../model/product/product.model.server');
 var userModel = require('../model/user/user.model.server');
+var policyModel = require('../model/policy/policy.model.server');
 
 
 var passport = require('passport');
@@ -99,6 +100,17 @@ function updateProduct(req,res) {
 
 function deleteProduct(req,res) {
     var productId = req.params["productId"];
+    policyModel.findAllPolicies()
+        .then(function (data) {
+            var policies = data;
+            for(var p in policies){
+                if(productId === policies[p]._product._id) {
+                    res.status(401).json("You cannot delete this product as this is being used by a user "+ policies[p].firstName+ " "+policies[p].lastName);
+                    return;
+                }
+            }
+        });
+
     productModel.deleteProduct(productId)
         .then(function (data) {
             res.json(data);

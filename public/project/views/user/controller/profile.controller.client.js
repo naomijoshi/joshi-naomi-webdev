@@ -15,7 +15,6 @@
             userService.setCurrentUser(currentUser);
         }
         function init() {
-            model.user.dob = new Date();
 
             $scope.clear = function () {
                 $scope.dt = null;

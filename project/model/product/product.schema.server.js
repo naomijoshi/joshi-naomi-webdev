@@ -13,7 +13,7 @@ var productSchema = mongoose.Schema({
     faceAmtMax: Number,
     faceAmtMin: Number,
     coverage: Number,
-    dateCreated : {type: Date, default: Date.now()},
+    dateCreated : {type: Date, default: Date.now()}
 }, {collection : "Product"});
 
 

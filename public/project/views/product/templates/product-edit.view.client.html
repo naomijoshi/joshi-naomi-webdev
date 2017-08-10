@@ -2,6 +2,20 @@
     <div class="row custom-pad">
         <div class="col-md-4 col-sm-4 visible-lg visible-md visible-sm full-page border">
             <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-9">
+                            <a href="#!/product/new">
+                                <label>Add new Product</label>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xs-3">
+                            <a href="#!/product/new">
+                                <span class="glyphicon glyphicon-plus pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
                 <li ng-repeat="product in model.products" class="list-group-item">
                     <div class="row">
                         <div class="col-md-6 col-xs-9">
@@ -24,20 +38,66 @@
             </div>
             <form role="form">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="name"
-                           placeholder="Page Name"
-                           ng-model="model.product._id">
-                </div>
-                <div class="form-group">
-                    <label for="title">Title</label>
+                    <label for="title">Product Title</label>
                     <input type="text"
                            class="form-control"
                            id="title"
-                           ng-model="model.page.description"
-                           placeholder="Page Title">
+                           placeholder="Product Title"
+                           ng-model="model.product.productTitle">
+                </div>
+                <div class="form-group">
+                    <label for="premium">Premium (monthly)</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                    <input type="number"
+                           class="form-control"
+                           id="premium"
+                           ng-model="model.product.premium"
+                           placeholder="Product premium">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="term">Product Term (in months)</label>
+                    <input type="number"
+                           class="form-control"
+                           id="term"
+                           ng-model="model.product.productTerm"
+                           placeholder="Product Term">
+                </div>
+                <div class="form-group">
+                    <label for="type">Product Type</label>
+                    <select id="type" class="form-control" ng-model="model.product.productType">
+                        <option value=''>---Please select Product Type---</option> <!-- not selected / blank option -->
+                        <option value='Term Life'>Term Life</option>
+                        <option value='Whole Life'>Whole Life</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="desc">Product Description</label>
+                    <textarea type="text"
+                           class="form-control"
+                           id="desc"
+                           ng-model="model.product.prodDesc"
+                              placeholder="Write a product description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="expiry">Expiry Age (in months)</label>
+                    <input type="number"
+                           class="form-control"
+                           id="expiry"
+                           ng-model="model.product.expiryAge"
+                           placeholder="Product Expiry Age">
+                </div>
+                <div class="form-group">
+                    <label for="coverage">Coverage</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                        <input type="number"
+                           class="form-control"
+                           id="coverage"
+                           ng-model="model.product.coverage"
+                           placeholder="Product coverage">
+                    </div>
                 </div>
             </form>
             <a ng-show="model.isUpdate" ng-click="model.updateProduct(model.product)" class="btn btn-primary">

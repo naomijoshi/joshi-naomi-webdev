@@ -48,6 +48,7 @@
                         $location.url("/product");
                     })
                     .catch(function (err) {
+                        console.log(err);
                         model.error = "Something went wrong. Please try again later"
                     })
         };

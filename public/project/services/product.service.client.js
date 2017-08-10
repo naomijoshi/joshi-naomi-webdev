@@ -54,6 +54,18 @@
                 .then(function (response) {
                     return response.data;
                 })
+                .catch(function (err) {
+                    return err;
+                })
+        }
+
+        function createProduct(product) {
+            var url = "/api/product";
+            var body = product;
+            return $http.post(url,body)
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         return api = {
@@ -61,7 +73,8 @@
             getAllProducts:getAllProducts,
             findProductById:findProductById,
             updateProduct:updateProduct,
-            deleteProduct:deleteProduct
+            deleteProduct:deleteProduct,
+            createProduct:createProduct
         }
     }
 })();

@@ -21,7 +21,7 @@
                                 Overview </a>
                         </li>
                         <li>
-                            <a href="#!/Profile">
+                            <a href="#!/profile">
                                 <i class="glyphicon glyphicon-picture"></i>
                                 Profile </a>
                         </li>
@@ -29,11 +29,6 @@
                             <a href="#!/user" target="_blank">
                                 <i class="glyphicon glyphicon-user"></i>
                                  Manage Users</a>
-                        </li>
-                        <li ng-show="currentUser.roles.indexOf('ADMIN')>-1">
-                            <a href="#!/user" target="_blank">
-                                <i class="glyphicon glyphicon-user  "></i>
-                                Manage Approvers</a>
                         </li>
                         <li ng-show="currentUser.roles.indexOf('ADMIN')>-1">
                             <a href="#!/product">

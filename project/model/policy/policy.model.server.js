@@ -14,6 +14,7 @@ policyModel.findPoliciesOfUser=findPoliciesOfUser;
 policyModel.findApplicationsOfUser=findApplicationsOfUser;
 policyModel.updatePolicy = updatePolicy;
 policyModel.deletePolicy=deletePolicy;
+policyModel.findAllPolicies=findAllPolicies;
 
 function createPolicy(policy) {
     return policyModel.create(policy);
@@ -41,4 +42,10 @@ function updatePolicy(policyId, newPolicy) {
 
 function deletePolicy(policyId) {
     return policyModel.remove({_id:policyId});
+}
+
+function findAllPolicies(){
+    return policyModel.find()
+        .populate('_product')
+        .exec();
 }
