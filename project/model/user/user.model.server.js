@@ -16,6 +16,8 @@ userModel.deleteUser = deleteUser;
 userModel.addPolicy = addPolicy;
 userModel.removePolicy = removePolicy;
 userModel.findUserByFacebookId=findUserByFacebookId;
+userModel.findAllUsers=findAllUsers;
+userModel.findUserByGoogleId=findUserByGoogleId;
 
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});
@@ -31,8 +33,16 @@ function findUserByCredentials(username) {
     }
 }
 
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id': googleId});
+}
+
 function findUserById(userId) {
     return userModel.findById(userId);
+}
+
+function findAllUsers() {
+    return userModel.find();
 }
 
 function updateUser(userId, newUser) {

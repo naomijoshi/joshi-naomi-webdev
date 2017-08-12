@@ -142,9 +142,9 @@
 
         model.delete = function (user) {
             if (user){
-                userService.deleteUser(user._id)
+                userService.unregister()
                     .then(function (response) {
-                        $location.url("/home");
+                        $location.url("/");
                     });
             }
         };

@@ -11,10 +11,10 @@
             .when('/' , {
                 templateUrl: "views/home/templates/home.view.client.html",
                 controller: "homeController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser: checkCurrentUser
-                }
+                controllerAs: "model"
+                // resolve: {
+                //     currentUser: checkCurrentUser
+                // }
             })
             .when('/login' , {
                 templateUrl : "views/user/templates/login.view.client.html",
@@ -85,6 +85,30 @@
             .when('/product/new' , {
                 templateUrl : "views/product/templates/product-edit.view.client.html",
                 controller : "productEditController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/users' , {
+                templateUrl : "views/user/templates/user-list.view.client.html",
+                controller : "userListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/users/:userId' , {
+                templateUrl : "views/user/templates/user-edit.view.client.html",
+                controller : "userEditController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/users/new' , {
+                templateUrl : "views/user/templates/user-edit.view.client.html",
+                controller : "userEditController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkAdmin

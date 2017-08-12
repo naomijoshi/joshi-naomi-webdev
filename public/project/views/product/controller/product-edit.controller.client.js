@@ -19,7 +19,6 @@
                 });
 
             if ($routeParams.productId && $routeParams.productId!="new") {
-                console.log($routeParams.productId);
                 productService.findProductById($routeParams.productId)
                     .then(function (data) {
                         model.product = data;
@@ -49,7 +48,7 @@
                     })
                     .catch(function (err) {
                         console.log(err);
-                        model.error = "Something went wrong. Please try again later"
+                        model.error = err;
                     })
         };
 

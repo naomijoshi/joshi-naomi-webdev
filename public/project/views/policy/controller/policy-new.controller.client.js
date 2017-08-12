@@ -23,9 +23,11 @@
                 policyService.findPolicyById($routeParams.policyId)
                     .then(function (data) {
                         model.policy = data;
+                        document.getElementById("arthritis").checked=model.policy.healthQuestions.arthritis;
                     });
                 model.isUpdate = true;
             }
+
         }
         init();
         model.createPolicy = function (policy) {

@@ -64,7 +64,7 @@
 
         function register(user) {
             var url = "/api/project/register";
-            user.roles = "ADMIN";
+            user.roles = "USER";
             return $http.post(url, user)
                 .then(function (response) {
                     return response.data;
@@ -115,6 +115,22 @@
                 })
         }
 
+        function getAllUsers() {
+            var url = "/api/project/users";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function unregister() {
+            var url = '/api/project/unregister';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
             createUser : createUser,
             findUserById : findUserById,
@@ -127,7 +143,9 @@
             checkLoggedIn:checkLoggedIn,
             register:register,
             setCurrentUser:setCurrentUser,
-            checkAdmin:checkAdmin
+            checkAdmin:checkAdmin,
+            getAllUsers:getAllUsers,
+            unregister:unregister
         };
     }
 })();

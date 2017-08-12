@@ -45,7 +45,6 @@ function deletePolicy(policyId) {
 }
 
 function findAllPolicies(){
-    return policyModel.find()
-        .populate('_product')
-        .exec();
+     return policyModel.find();
+
 }

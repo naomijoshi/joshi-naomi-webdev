@@ -6,9 +6,9 @@
         .module('MyProject')
         .controller('homeController', homeController);
 
-    function homeController($location, userService, currentUser) {
+    function homeController($location, userService) {
         var model = this;
-        model.user = currentUser;
+        // model.user = currentUser;
         // if(model.user) {
         //     userService.setCurrentUser(model.user);
         // }
@@ -27,9 +27,12 @@
                         console.log("user coming back from service", data);
                     } else {
                         model.message = "Username "+username+ " not found";
+                        console.log(model.message);
                     }
                 }, function (err) {
                     model.message = "Username "+username+ " not found";
+                    console.log(model.message);
+
                 });
         }
     }

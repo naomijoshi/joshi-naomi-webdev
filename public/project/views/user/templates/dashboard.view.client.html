@@ -26,7 +26,7 @@
                                 Profile </a>
                         </li>
                         <li ng-show="currentUser.roles.indexOf('ADMIN')>-1">
-                            <a href="#!/user" target="_blank">
+                            <a href="#!/users">
                                 <i class="glyphicon glyphicon-user"></i>
                                  Manage Users</a>
                         </li>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="col-lg-9">
-            <div class="profile-content">
+            <div ng-hide="currentUser.roles.indexOf('APPROVER')>-1" class="profile-content">
                 <uib-tabset active="active">
                     <uib-tab index="0" heading="My Applications" class="black">
                         <div class="custom-pad">

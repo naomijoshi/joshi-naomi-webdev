@@ -4,7 +4,7 @@
 var mongoose = require('mongoose');
 
 var productSchema = mongoose.Schema({
-    productTitle : {type: String, require:true, enum:["Bronze","Silver","Gold"]},
+    productTitle : {type: String, require:true},
     premium : {type: Number, require:true},
     productTerm : {type: Number},
     productType : {type: String, enum:["Term Life","Whole Life"]},

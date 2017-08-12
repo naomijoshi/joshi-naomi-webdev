@@ -15,6 +15,7 @@
         model.findRecommendedProduct = function (questions) {
                 productService.findRecommendedProduct(questions)
                     .then(function (data) {
+                        console.log(data);
                         model.showProduct = data;
                     })
         }

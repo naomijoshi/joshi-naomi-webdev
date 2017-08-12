@@ -6,7 +6,7 @@
         .module('MyProject')
         .factory('productService', productService)
 
-    function productService($http,$rootScope) {
+    function productService($http,$rootScope,$q) {
 
         function findRecommendedProduct(questions) {
             var url = "/api/product/recommend";
@@ -55,7 +55,7 @@
                     return response.data;
                 })
                 .catch(function (err) {
-                    return err;
+                    return $q.reject(err.data);
                 })
         }
 

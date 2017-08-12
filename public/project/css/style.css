@@ -260,3 +260,24 @@ body {
     line-height: 1.428571429;
     border-radius: 15px;
 }
+
+/*Data table in user list*/
+
+.row-for-table{
+    margin-top:40px;
+    padding: 0 10px;
+}
+.clickable{
+    cursor: pointer;
+}
+
+.panel-table div {
+    margin-top: -18px;
+    font-size: 15px;
+}
+.panel-table div span{
+    margin-left:5px;
+}
+.body-panel{
+    display: none;
+}

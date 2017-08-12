@@ -1,0 +1,155 @@
+<div class="container">
+    <div class="row  custom-pad">
+        <div class="col-md-6 visible-lg visible-md visible-sm full-page border">
+            <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading panel-table">
+                    <h3 class="panel-title">Users</h3>
+                    <div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+                    </div>
+                </div>
+                <div class="panel-body body-panel">
+                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+                </div>
+                <table class="table table-hover black" id="dev-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Add a new user</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            <a href="#!/users/new">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>User Role</th>
+                        <th>Edit/Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in model.users">
+                        <td>{{model.users.indexOf(user)+1}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.username}}</td>
+                        <td>
+                            <div ng-repeat="role in user.roles">
+                                {{role}}
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#!/users/{{user._id}}">
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div ng-show="model.message" class="alert alert-danger">
+                {{model.message}}
+            </div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="role">User Role</label>
+                    <select id="role" class="form-control" ng-model="model.user.roles">
+                        <option value=''>---Please select User Type---</option> <!-- not selected / blank option -->
+                        <option value='USER'>Customer</option>
+                        <option value='ADMIN'>Admin</option>
+                        <option value='APPROVER'>Approver</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               ng-model="model.user.username"
+                               placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="firstname"
+                           ng-model="model.user.firstName"
+                           placeholder="First name">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="lastname"
+                           ng-model="model.user.lastName"
+                           placeholder="Last name">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" class="form-control" ng-model="model.user.gender">
+                        <option value=''>---Please select user's gender---</option> <!-- not selected / blank option -->
+                        <option value='Female'>Female</option>
+                        <option value='Male'>Male</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email"
+                              class="form-control"
+                              id="email"
+                              ng-model="model.user.email"
+                              placeholder="Email">
+                </div>
+                <div ng-hide="model.isUpdate" class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password"
+                           class="form-control"
+                           id="password"
+                           ng-model="model.user.password"
+                           placeholder="Password">
+                </div>
+                <div ng-hide="model.isUpdate" class="form-group">
+                    <label for="conPassword">Confirm Password</label>
+                    <input type="password"
+                           class="form-control"
+                           id="conPassword"
+                           ng-model="model.user.conPassword"
+                           placeholder="Confirm password">
+                </div>
+
+            </form>
+            <a ng-show="model.isUpdate" ng-click="model.updateUser(model.user)" class="btn btn-primary">
+                Update
+            </a>
+            <a ng-show="model.isUpdate" ng-click="model.deleteUser(model.user)" data-toggle="confirmation" class="btn btn-danger">
+                Remove
+            </a>
+            <a ng-hide="model.isUpdate" ng-click="model.createUser(model.user)" class="btn btn-success">
+                Add new
+            </a>
+            <a href="#!/users" class="btn btn-success">
+                <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+                Back
+            </a>
+        </div>
+    </div>
+</div>

@@ -7,8 +7,6 @@ var userModel = require('../model/user/user.model.server');
 var policyModel = require('../model/policy/policy.model.server');
 
 
-var passport = require('passport');
-
 app.post('/api/product/recommend', findRecommendedProduct);
 app.get('/api/product',getAllProducts);
 app.get('/api/product/:productId',findProductById);
@@ -104,11 +102,14 @@ function deleteProduct(req,res) {
         .then(function (data) {
             var policies = data;
             for(var p in policies){
-                if(productId === policies[p]._product._id) {
+                if(productId == policies[p]._product) {
                     res.status(401).json("You cannot delete this product as this is being used by a user "+ policies[p].firstName+ " "+policies[p].lastName);
                     return;
                 }
             }
+        })
+        .catch(function (err) {
+            console.log(err);
         });
 
     productModel.deleteProduct(productId)
