@@ -6,7 +6,7 @@
         .module('MyProject')
         .controller('policyNewController', policyNewController);
 
-    function policyNewController($location, $routeParams,productService, userService,policyService,currentUser) {
+    function policyNewController($location,$sce, $routeParams,productService, userService,policyService,currentUser) {
         var model = this;
         model.user = currentUser;
         if (currentUser){
@@ -36,6 +36,9 @@
                     policyService.createPolicy(model.user._id, policy)
                         .then(function (data) {
                             model.message = "You Application is successfully submitted for approval";
+                            console.log(data);
+                            model.url=data;
+                            model.showPdf = true;
                         })
                         .catch(function (err) {
                             model.error = "There was an error processing your request"
@@ -44,6 +47,7 @@
             }
 
         };
+
 
         model.updatePolicy = function (newPolicy) {
             console.log("new policy", newPolicy);
