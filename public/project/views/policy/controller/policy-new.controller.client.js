@@ -45,6 +45,8 @@
                         .catch(function (err) {
                             model.error = "There was an error processing your request"
                         })
+                } else {
+                    model.error = "Please fill all the fields"
                 }
             }
 

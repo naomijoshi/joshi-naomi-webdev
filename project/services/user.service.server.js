@@ -156,21 +156,22 @@ function register(req, res) {
 }
 
 function unregister(req, res) {
-    // var policies = req.user._policies;
-    // console.log("policies alice", policies.length);
-    // if(policies.length>0) {
-    //     for(var policy in policies) {
-    //         policyModel.deletePolicy(policies[policy])
-    //             .then(function (data) {
-    //
-    //             });
-    //     }
-    // }
+    var policies = req.user._policies;
+    console.log("policies alice", policies.length);
+    if(policies.length>0) {
+        for(var policy in policies) {
+            policyModel.deletePolicy(policies[policy])
+                .then(function (data) {
+
+                });
+        }
+    }
     userModel.deleteUser(req.user._id)
         .then(function (data) {
-            req.logout(user, function (status) {
-                res.sendStatus(200);
-            })
+            // req.logout(user, function (status) {
+            //     res.sendStatus(200);
+            // })
+            res.sendStatus(200);
         })
 }
 

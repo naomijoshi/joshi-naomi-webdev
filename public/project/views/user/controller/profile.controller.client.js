@@ -144,6 +144,7 @@
             if (user){
                 userService.unregister()
                     .then(function (response) {
+                        userService.setCurrentUser(null);
                         $location.url("/dashboard");
                     });
             }
