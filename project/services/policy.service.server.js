@@ -22,6 +22,7 @@ app.put('/api/policy/:policyId',updatePolicy);
 app.delete('/api/policy/:policyId',deletePolicy);
 app.get('/api/policies',findAllPolicies);
 app.get('/api/application',findAllApplications);
+app.get('/api/admin/policies',findAllAdminPolicies);
 
 
 
@@ -284,6 +285,16 @@ function findAllPolicies(req,res) {
         })
 		.catch(function (err) {
 			res.json(err);
+        })
+}
+
+function findAllAdminPolicies(req,res) {
+    policyModel.findAllAdminPolicies()
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
         })
 }
 

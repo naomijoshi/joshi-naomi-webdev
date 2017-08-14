@@ -102,6 +102,7 @@ function deleteProduct(req,res) {
         .then(function (data) {
             var policies = data;
             for(var p in policies){
+                console.log("productID", policies[p]._product, typeof policies[p]._product._id);
                 if(productId == policies[p]._product) {
                     res.status(401).json("You cannot delete this product as this is being used by a user "+ policies[p].firstName+ " "+policies[p].lastName);
                     return;

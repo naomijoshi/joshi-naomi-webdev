@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
         id:    String,
         token: String
     },
-    roles: {type: [String], enum:['USER','APPROVER','ADMIN'], require: true},
+    roles: {type: String, enum:['USER','APPROVER','ADMIN'], require: true},
     _policies: [
         {type: mongoose.Schema.Types.ObjectId, ref:"PolicyModel"}
     ],

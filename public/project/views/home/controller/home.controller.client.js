@@ -6,7 +6,7 @@
         .module('MyProject')
         .controller('homeController', homeController);
 
-    function homeController($location, userService) {
+    function homeController($location, userService, $scope) {
         var model = this;
         // model.user = currentUser;
         // if(model.user) {
@@ -14,7 +14,7 @@
         // }
         model.login = function (username,password) {
             if(!username || !password) {
-                model.message = "Username,password cannot be blank";
+                $scope.message = "Username,password cannot be blank";
                 return;
             }
             userService.login(username,password)
@@ -26,12 +26,12 @@
                             });
                         console.log("user coming back from service", data);
                     } else {
-                        model.message = "Username "+username+ " not found";
-                        console.log(model.message);
+                        $scope.message = "Username "+username+ " not found";
+                        console.log(message);
                     }
                 }, function (err) {
-                    model.message = "Username "+username+ " not found";
-                    console.log(model.message);
+                    $scope.message = "Username "+username+ " not found";
+                    console.log($scope.message);
 
                 });
         }

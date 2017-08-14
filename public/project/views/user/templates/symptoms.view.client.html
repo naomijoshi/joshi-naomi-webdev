@@ -7,11 +7,19 @@
         </a>
         </span>
     </div>
-    <div class="row">
-        <!--<div class="col-xs-4 col-md-3 col-lg-3 col-sm-4" ng-repeat="photo in model.photos.photo">-->
-            <!--<img ng-click="model.selectPhoto(photo)"-->
-                 <!--width="100%"-->
-                 <!--ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg"/>-->
-        <!--</div>-->
+    <div class="row col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6">
+        <h3 ng-if="model.symptoms">Symptoms of {{searchText}}
+            <a href="#!/dashboard" class="btn btn-primary pull-right">
+            Back
+             </a> </h3>
+        <div class="custom-pad" ng-repeat="symptom in model.symptoms">
+            <ul>
+                <li>
+                    <label>{{symptom.name}}</label>
+                    <p>{{symptom.description}}</p>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </div>

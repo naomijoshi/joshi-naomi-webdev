@@ -92,6 +92,14 @@
                 })
         }
 
+        function findAllAdminPolicies() {
+            var url = '/api/admin/policies';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
             createPolicy:createPolicy,
             getAllPolicies:getAllPolicies,
@@ -102,7 +110,8 @@
             deletePolicy:deletePolicy,
             findAllPolicies:findAllPolicies,
             findPoliciesOfEmp:findPoliciesOfEmp,
-            findAllApplications:findAllApplications
+            findAllApplications:findAllApplications,
+            findAllAdminPolicies:findAllAdminPolicies
         }
     }
 })();

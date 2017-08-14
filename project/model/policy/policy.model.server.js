@@ -17,6 +17,7 @@ policyModel.deletePolicy=deletePolicy;
 policyModel.findAllPolicies=findAllPolicies;
 policyModel.findPoliciesOfEmp=findPoliciesOfEmp;
 policyModel.findAllApplications=findAllApplications;
+policyModel.findAllAdminPolicies=findAllAdminPolicies;
 
 function createPolicy(policy) {
     return policyModel.create(policy);
@@ -58,6 +59,12 @@ function findAllPolicies(){
          .populate('_product')
          .exec();
 
+}
+
+function findAllAdminPolicies() {
+    return policyModel.find({status:"Approved"})
+        .populate('_product')
+        .exec();
 }
 
 function findAllApplications(){

@@ -154,7 +154,8 @@
 
                     return $http.post('/api/symptoms', params)
                         .then(function (data) {
-                            return data;
+                            return data.data;
+                            return data.data;
                         })
                 })
 

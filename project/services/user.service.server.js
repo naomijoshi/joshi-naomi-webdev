@@ -46,7 +46,7 @@ if (process.env.MLAB_USERNAME_WEBDEV) {
     googleConfig.callbackURL = "http://127.0.0.1:3000/auth/project/google/callback"
 }
 passport.use('localproject',new LocalStrategy(localStrategy));
-// passport.use('googleproject',new GoogleStrategy(googleConfig, googleStrategy));
+passport.use('googleproject',new GoogleStrategy(googleConfig, googleStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
@@ -57,7 +57,7 @@ function login(req, res) {
 }
 
 function isAdmin(req, res, next) {
-    if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN')>-1) {
+    if (req.isAuthenticated() && (req.user.roles == 'ADMIN')) {
         next()
     } else {
         res.sendStatus(401);
@@ -79,7 +79,7 @@ function checkLoggedIn(req, res) {
 
 
 function checkAdmin(req, res) {
-    if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN')>-1) {
+    if (req.isAuthenticated() && (req.user.roles == 'ADMIN')) {
         res.json(req.user);
     } else {
         res.json("0");
@@ -104,7 +104,7 @@ function googleStrategy(token, refreshToken, profile, done) {
                             id:          profile.id,
                             token:       token
                         },
-                        roles:["USER"]
+                        roles:"USER"
                     };
 
                     return userModel.createUser(newGoogleUser)

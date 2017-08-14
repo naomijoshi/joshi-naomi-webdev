@@ -8,7 +8,7 @@ body {
     color: #eae3ea;
     /*background-color: rgba(241,159,77,0.8);*/
     background-color: #30415d;
-    /*background-image: url("../images/insurance.jpg");*/
+    background-image: url("../images/background.jpg");
 }
 .navbar-default {
     background-color: rgba(3,20,36,0.7);

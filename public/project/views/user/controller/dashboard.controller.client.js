@@ -21,6 +21,13 @@
             findAllPolicies();
 
             findPoliciesOfEmp();
+            if(model.user.roles.indexOf('ADMIN')>-1){
+                findAdminApplication();
+            }
+            if(model.user.roles.indexOf('APPROVER')>-1){
+                findAllApplications();
+            }
+
         }
         // $('button[name="remove_levels"]').on('click', function(e) {
         //     // var $form = $(this).closest('form');
@@ -39,9 +46,23 @@
         // })
 
         function findAllPolicies() {
+            policyService.findAllAdminPolicies()
+                .then(function (data) {
+                    model.adminPolicies = data;
+                    console.log(model.adminPolicies);
+                })
+        }
+        function findAllApplications() {
             policyService.findAllApplications()
                 .then(function (data) {
                     model.allApplications = data;
+                    console.log(model.allApplications);
+                })
+        }
+        function findAdminApplication() {
+            policyService.findAllApplications()
+                .then(function (data) {
+                    model.adminApplications = data;
                     console.log(model.allApplications);
                 })
         }
@@ -74,10 +95,16 @@
                 console.log(policyId);
                 policyService.deletePolicy(policyId)
                     .then(function (data) {
-                        findAllPolicies();
+                        if(model.user.roles == ('ADMIN')){
+                            findAdminApplication();
+                        }
+                        if(model.user.roles == ('APPROVER')){
+                            findAllApplications();
+                        }
                         findPoliciesOfUser();
                         findApplicationsOfUser();
                         findPoliciesOfEmp();
+                        findAllPolicies();
                         $location.url("/dashboard");
                     })
             }
@@ -89,8 +116,14 @@
                 app._employee = model.user._id;
                 policyService.updatePolicy(app._id,app)
                     .then(function (data) {
-                        findAllPolicies();
+                        if(model.user.roles==('ADMIN')){
+                            findAdminApplication();
+                        }
+                        if(model.user.roles==('APPROVER')){
+                            findAllApplications();
+                        }
                         findPoliciesOfEmp();
+                        findAllPolicies();
                         $location.url("/dashboard");
                     })
             }
