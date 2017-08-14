@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var bcrypt = require("bcrypt-nodejs");
-
+var myReq = require('request');
 
 
 app.get('/api/project/user', findUserByCredentials);
@@ -27,6 +27,7 @@ app.post('/api/project/register', register);
 app.get('/api/project/unregister', unregister);
 app.get   ('/api/project/checkLoggedIn', checkLoggedIn);
 app.get ('/auth/project/google', passport.authenticate('googleproject', { scope : ['profile', 'email'] }));
+app.post('/api/symptoms', getSymptoms);
 
 app.get('/auth/project/google/callback',
     passport.authenticate('googleproject', {
@@ -258,3 +259,28 @@ function deserializeUser(user, done) {
         );
 }
 
+function getSymptoms(req, res){
+    console.log(req.body);
+
+    var options = {
+        url: req.body.url,
+        headers: {
+            'Token': req.body.token
+        }
+    };
+    myReq(options, function(err, result, body){
+        res.json(body);
+    });
+
+
+    // var url1 = "https://api.healthgraphic.com/v1/conditions/"+searchText+"/symptoms?page=1&per_page=20";
+    // var config1 = {
+    //     url: url1,
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //         'token': token
+    //     },
+    //     body: ""
+    // };
+}

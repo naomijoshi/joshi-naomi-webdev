@@ -12,8 +12,8 @@
         model.getSymptoms = function (searchtext) {
             userService.getSymptoms(searchtext)
                 .then(function (data) {
-                    console.log(data);
-                    model.symptoms = data;
+                    console.log("Body from health symptoms", data.data);
+                    model.symptoms = data.data;
                 })
         }
 

@@ -144,22 +144,16 @@
 
            return $http(config)
                 .then(function (data) {
-                    console.log(data);
                     var token = data.data.token;
                     console.log(token);
                     var url1 = "https://api.healthgraphic.com/v1/conditions/"+searchText+"/symptoms?page=1&per_page=20";
-                    var config1 = {
-                        url: url1,
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'token': token
-                        },
-                        body: ""
+                    var params = {
+                        url : url1,
+                        token : token
                     };
-                    return $http(config1)
+
+                    return $http.post('/api/symptoms', params)
                         .then(function (data) {
-                            console.log(data);
                             return data;
                         })
                 })
