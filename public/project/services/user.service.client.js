@@ -131,6 +131,40 @@
                 })
         }
 
+        function getSymptoms(searchText) {
+            var url = 'https://api.healthgraphic.com/v1/login.json';
+            var config = {
+                url: url,
+                data: "email=joshi.nao@husky.neu.edu&password=Nainital1206!",
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            };
+
+           return $http(config)
+                .then(function (data) {
+                    console.log(data);
+                    var token = data.data.token;
+                    console.log(token);
+                    var url1 = "https://api.healthgraphic.com/v1/conditions/"+searchText+"/symptoms?page=1&per_page=20";
+                    var config1 = {
+                        url: url1,
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'token': token
+                        },
+                        body: ""
+                    };
+                    return $http(config1)
+                        .then(function (data) {
+                            console.log(data);
+                            return data;
+                        })
+                })
+
+        }
         return api = {
             createUser : createUser,
             findUserById : findUserById,
@@ -145,7 +179,8 @@
             setCurrentUser:setCurrentUser,
             checkAdmin:checkAdmin,
             getAllUsers:getAllUsers,
-            unregister:unregister
+            unregister:unregister,
+            getSymptoms:getSymptoms
         };
     }
 })();

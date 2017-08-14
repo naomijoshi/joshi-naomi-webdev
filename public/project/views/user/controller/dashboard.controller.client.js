@@ -13,16 +13,14 @@
             userService.setCurrentUser(currentUser);
         }
         function init() {
-            policyService.findPoliciesOfUser(model.user._id)
-                .then(function (data) {
-                    model.policies = data;
-                });
 
-            policyService.findApplicationsOfUser(model.user._id)
-                .then(function (data) {
-                    model.applications = data;
+            findApplicationsOfUser()
 
-                })
+            findPoliciesOfUser();
+
+            findAllPolicies();
+
+            findPoliciesOfEmp();
         }
         // $('button[name="remove_levels"]').on('click', function(e) {
         //     // var $form = $(this).closest('form');
@@ -40,15 +38,64 @@
         //
         // })
 
+        function findAllPolicies() {
+            policyService.findAllApplications()
+                .then(function (data) {
+                    model.allApplications = data;
+                    console.log(model.allApplications);
+                })
+        }
+
+        function findPoliciesOfUser() {
+            policyService.findPoliciesOfUser(model.user._id)
+                .then(function (data) {
+                    model.policies = data;
+                });
+        }
+
+        function findApplicationsOfUser() {
+            policyService.findApplicationsOfUser(model.user._id)
+                .then(function (data) {
+                    model.applications = data;
+
+                });
+        }
+
+        function findPoliciesOfEmp() {
+            policyService.findPoliciesOfEmp(model.user._id)
+                .then(function (data) {
+                    model.allPolicies = data;
+                    console.log(model.allPolicies);
+                });
+        }
+
         model.cancelPolicy = function (policyId) {
             if (policyId) {
                 console.log(policyId);
                 policyService.deletePolicy(policyId)
                     .then(function (data) {
-                        model.message = "Your policy/application has been successfully terminated";
+                        findAllPolicies();
+                        findPoliciesOfUser();
+                        findApplicationsOfUser();
+                        findPoliciesOfEmp();
+                        $location.url("/dashboard");
                     })
             }
         };
+
+        model.approveApplication = function (app) {
+            if(app) {
+                app.status="Approved";
+                app._employee = model.user._id;
+                policyService.updatePolicy(app._id,app)
+                    .then(function (data) {
+                        findAllPolicies();
+                        findPoliciesOfEmp();
+                        $location.url("/dashboard");
+                    })
+            }
+        };
+
         init();
     }
 })();

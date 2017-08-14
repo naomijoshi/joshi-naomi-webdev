@@ -15,15 +15,19 @@ var passport = require('passport');
 
 app.post('/api/policy', createPolicy);
 app.get('/api/policy/user/:userId',findPoliciesOfUser);
+app.get('/api/policy/employee/:empId',findPoliciesOfEmp);
 app.get('/api/application/user/:userId',findApplicationsOfUser);
 app.get('/api/policy/:policyId',findPolicyById);
 app.put('/api/policy/:policyId',updatePolicy);
 app.delete('/api/policy/:policyId',deletePolicy);
+app.get('/api/policies',findAllPolicies);
+app.get('/api/application',findAllApplications);
 
 
 
-function initiateDocusign(data, session, resParent){
-    session = session.passport;
+function initiateDocusign(data, req, resParent){
+     var session = req.user;
+    console.log("session in docusign",session);
     productModel.findProductById(data._product)
         .then(function(prod){
 	        console.log('The product is ', prod);
@@ -53,8 +57,8 @@ function initiateDocusign(data, session, resParent){
 			        }],
 			        "recipients": {
 				        "signers": [{
-					        "email": session.user.email,
-					        "name": session.user.firstName + " " + session.user.lastName,
+					        "email": session.email,
+					        "name": session.firstName + " " + session.lastName,
 					        "recipientId": "1",
 					        "clientUserId": "1234",
 					        "tabs": {
@@ -78,28 +82,28 @@ function initiateDocusign(data, session, resParent){
 							        "anchorYOffset": "-8",
 							        "anchorXOffset" : "45",
 							        "fontSize": "Size12",
-							        "value" : session.user.email // TODO
+							        "value" : session.email // TODO
 						        },
 							        {
 								        "anchorString": "Age",
 								        "anchorYOffset": "-8",
 								        "anchorXOffset" : "35",
 								        "fontSize": "Size12",
-								        "value" : getAge(session.user.dob.split('T')[0])//   TODO
+								        "value" : getAge(session.dob.toString().split('T')[0])//   TODO
 							        },
 							        {
 								        "anchorString": "Address",
 								        "anchorYOffset": "-8",
 								        "anchorXOffset" : "60",
 								        "fontSize": "Size12",
-								        "value" : session.user.address //   TODO
+								        "value" : session.address //   TODO
 							        },
 							        {
 								        "anchorString": "Gender",
 								        "anchorYOffset": "-8",
 								        "anchorXOffset" : "60",
 								        "fontSize": "Size12",
-								        "value" : session.user.gender //   TODO
+								        "value" : session.gender //   TODO
 							        },
 							        {
 								        "anchorString": "Product",
@@ -159,12 +163,12 @@ function initiateDocusign(data, session, resParent){
 			        body : paramsForEmbeddedSign
 		        }, function(err, res, body){
 			        var paramsForUrlGen = {
-				        "userName": session.user.firstName + " " + session.user.lastName,
-				        "email": session.user.email,
+				        "userName": session.firstName + " " + session.lastName,
+				        "email": session.email,
 				        "recipientId": "1",
 				        "clientUserId": "1234",
 				        "authenticationMethod": "email",
-				        "returnUrl": "http://localhost:3000/project/index.html#!/dashboard"
+				        "returnUrl": "http://localhost:3000/project/index.html#!/dashboard" //TODO
 			        };
 			        return request.post({
 				        url : baseUrl + "/envelopes/" + body.envelopeId + "/views/recipient",
@@ -192,7 +196,7 @@ function createPolicy(req,res) {
     policyModel.createPolicy(policy)
         .then(function (data) {
 	        userModel.addPolicy(data._user, data._id);
-	        initiateDocusign(data, req.session, res)
+	        initiateDocusign(data, req, res)
         })
         .catch(function (err) {
             res.json(err)
@@ -214,6 +218,18 @@ function findPolicyById(req, res) {
 function findPoliciesOfUser(req, res) {
     var userId = req.params["userId"];
     policyModel.findPoliciesOfUser(userId)
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+
+}
+
+function findPoliciesOfEmp(req, res) {
+    var empId = req.params["empId"];
+    policyModel.findPoliciesOfEmp(empId)
         .then(function (data) {
             res.json(data);
         })
@@ -251,7 +267,7 @@ function updatePolicy(req, res) {
 function deletePolicy(req, res) {
     var policyId = req.params["policyId"];
     policyModel.deletePolicy(policyId)
-        .then(function () {
+        .then(function (data) {
             userModel.removePolicy(req.user._id,policyId);
             res.json(data);
         })
@@ -259,4 +275,24 @@ function deletePolicy(req, res) {
             res.json(err);
         });
 
+}
+
+function findAllPolicies(req,res) {
+	policyModel.findAllPolicies()
+		.then(function (data) {
+			res.json(data);
+        })
+		.catch(function (err) {
+			res.json(err);
+        })
+}
+
+function findAllApplications(req,res) {
+    policyModel.findAllApplications()
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
+        })
 }

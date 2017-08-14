@@ -50,6 +50,11 @@
                 controller : "recommendController",
                 controllerAs: "model"
             })
+            .when('/symptoms' , {
+                templateUrl : "views/user/templates/symptoms.view.client.html",
+                controller : "symptomsController",
+                controllerAs: "model"
+            })
             .when('/application' , {
                 templateUrl : "views/policy/templates/policy-new.view.client.html",
                 controller : "policyNewController",

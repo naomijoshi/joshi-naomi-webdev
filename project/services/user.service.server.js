@@ -68,6 +68,7 @@ function logout(req, res) {
 }
 
 function checkLoggedIn(req, res) {
+    console.log("session in checkedlogin", req.user);
     if (req.isAuthenticated()) {
         res.json(req.user);
     } else {
@@ -222,13 +223,21 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
     var userId = req.params["userId"];
-    for(var policy in req.user._policies) {
-        policyModel.deletePolicy(req.user._policies[policy]);
-    }
-    userModel.deleteUser(userId)
+    userModel.findUserById(userId)
         .then(function (data) {
-            res.send("User deleted successfully");
-        })
+            var user = data;
+            var policies = user._policies;
+            for(var i=0;i<policies.length;i++) {
+                policyModel.deletePolicy(policies[i])
+                    .then(function (data) {
+                        
+                    });
+            }
+            userModel.deleteUser(userId)
+                .then(function (data) {
+                    res.send("User deleted successfully");
+                })
+        });
 }
 
 

@@ -127,8 +127,8 @@
 
         model.update = function (user) {
             if (user){
+                var place = autocomplete.getPlace();
                 if(place) {
-                    var place = autocomplete.getPlace();
                     user.address = place.formatted_address;
                 }
                 console.log("address in place", place);

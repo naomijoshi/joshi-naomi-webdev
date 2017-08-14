@@ -35,6 +35,14 @@
                 })
         }
 
+        function findPoliciesOfEmp(userId) {
+            var url = "/api/policy/employee/" + userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         function findApplicationsOfUser(userId) {
             var url = "/api/application/user/" + userId;
             return $http.get(url)
@@ -68,6 +76,22 @@
                 })
         }
 
+        function findAllPolicies() {
+            var url = '/api/policies';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function findAllApplications() {
+            var url = '/api/application';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return api = {
             createPolicy:createPolicy,
             getAllPolicies:getAllPolicies,
@@ -75,7 +99,10 @@
             findApplicationsOfUser:findApplicationsOfUser,
             findPolicyById:findPolicyById,
             updatePolicy:updatePolicy,
-            deletePolicy:deletePolicy
+            deletePolicy:deletePolicy,
+            findAllPolicies:findAllPolicies,
+            findPoliciesOfEmp:findPoliciesOfEmp,
+            findAllApplications:findAllApplications
         }
     }
 })();

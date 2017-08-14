@@ -13,11 +13,14 @@
         }
         console.log(model.showProduct);
         model.findRecommendedProduct = function (questions) {
-                productService.findRecommendedProduct(questions)
-                    .then(function (data) {
-                        console.log(data);
-                        model.showProduct = data;
-                    })
+                // productService.findRecommendedProduct(questions)
+                //     .then(function (data) {
+                        productService.getAllProducts()
+                            .then(function (data) {
+                                model.products = data;
+                            });
+                        model.showProduct = true;
+                    // })
         }
 
     }

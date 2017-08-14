@@ -12,13 +12,6 @@ var policySchema = mongoose.Schema({
     status: {type:String, enum:['Submitted','Approved']},
     dateCreated : {type: Date, default: Date.now()},
     _employee: {type: mongoose.Schema.ObjectId, ref : 'CustomerModel'},
-    beneficiary: {
-        firstName: {type:String, require:true},
-        lastName: {type:String, require:true},
-        address: String,
-        email : {type: String},
-        phone: String
-    },
     healthQuestions:{
         arthritis: Boolean,
         blood: Boolean,

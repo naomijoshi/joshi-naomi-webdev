@@ -62,7 +62,9 @@
                                         Product Title: {{app._product.productTitle}}<br>
                                         Payment frequency: {{app.paymentFreq}}<br>
                                         Product Premium: ${{app._product.premium}}<br>
-                                        Product Coverage: ${{app._product.coverage}}
+                                        Product Coverage: ${{app._product.coverage}}<br>
+                                        Deductible: ${{app._product.deductible}}<br>
+
                                         <div class="custom-pad">
                                             <a href="#!/application/{{app._id}}" class="btn btn-primary">
                                                 Update Application
@@ -101,6 +103,7 @@
                                         Payment frequency: {{policy.paymentFreq}}<br>
                                         Product Premium: ${{policy._product.premium}}<br>
                                         Product Coverage: ${{policy._product.coverage}}<br>
+                                        Deductible: ${{policy._product.deductible}}<br>
                                         <div class="custom-pad">
                                             <a href="#!/application/{{policy._id}}" class="btn btn-primary">
                                                 Update Policy
@@ -114,6 +117,63 @@
                             </div>
                         </div>
                     </uib-tab>
+                </uib-tabset>
+            </div>
+            <div ng-show="currentUser.roles.indexOf('APPROVER')>-1" class="profile-content">
+                <uib-tabset active="active">
+                    <uib-tab index="0" heading="Applications to be approved" class="black">
+                        <div ng-repeat="appl in model.allApplications" class="panel-group custom-pad">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-target="#{{appl._id}}">Application ID: {{appl._id}}
+                                            <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                                    </h4>
+                                </div>
+                                <div id="{{appl._id}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Insured name : {{appl.firstName}} {{appl.lastName}}<br>
+                                        Product Title: {{appl._product.productTitle}}<br>
+                                        Payment frequency: {{appl.paymentFreq}}<br>
+                                        Product Premium: ${{appl._product.premium}}<br>
+                                        Product Coverage: ${{appl._product.coverage}}<br>
+                                        Deductible: ${{appl._product.deductible}}<br>
+                                        <div class="custom-pad">
+                                            <a ng-click="model.approveApplication(appl)" class="btn btn-primary">
+                                                Approve Application
+                                            </a>
+                                            <button ng-click="model.cancelPolicy(appl._id)" class="btn btn-danger" name="remove_levels" value="delete">
+                                                Reject Application
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="My approved application" class="black">
+                        <div ng-repeat="pol in model.allPolicies" class="panel-group custom-pad">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-target="#{{pol._id}}">Policy ID: {{pol._id}}
+                                            <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                                    </h4>
+                                </div>
+                                <div id="{{pol._id}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Insured name : {{pol.firstName}} {{pol.lastName}}<br>
+                                        Product Title: {{pol._product.productTitle}}<br>
+                                        Payment frequency: {{pol.paymentFreq}}<br>
+                                        Product Premium: ${{pol._product.premium}}<br>
+                                        Product Coverage: ${{pol._product.coverage}}<br>
+                                        Deductible: ${{pol._product.deductible}}<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+
                 </uib-tabset>
             </div>
         </div>

@@ -15,6 +15,8 @@ policyModel.findApplicationsOfUser=findApplicationsOfUser;
 policyModel.updatePolicy = updatePolicy;
 policyModel.deletePolicy=deletePolicy;
 policyModel.findAllPolicies=findAllPolicies;
+policyModel.findPoliciesOfEmp=findPoliciesOfEmp;
+policyModel.findAllApplications=findAllApplications;
 
 function createPolicy(policy) {
     return policyModel.create(policy);
@@ -30,6 +32,12 @@ function findPoliciesOfUser(userId) {
         .exec();
 }
 
+function findPoliciesOfEmp(empId) {
+    return policyModel.find({_employee: empId,status:"Approved"})
+        .populate('_product')
+        .exec();
+}
+
 function findApplicationsOfUser(userId) {
     return policyModel.find({_user: userId,status:"Submitted"})
         .populate('_product')
@@ -41,10 +49,20 @@ function updatePolicy(policyId, newPolicy) {
 }
 
 function deletePolicy(policyId) {
+    console.log("in delete policy model", policyId, typeof policyId);
     return policyModel.remove({_id:policyId});
 }
 
 function findAllPolicies(){
-     return policyModel.find();
+     return policyModel.find()
+         .populate('_product')
+         .exec();
+
+}
+
+function findAllApplications(){
+    return policyModel.find({status:"Submitted"})
+        .populate('_product')
+        .exec();
 
 }

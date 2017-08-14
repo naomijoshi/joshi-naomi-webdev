@@ -7,12 +7,10 @@ var productSchema = mongoose.Schema({
     productTitle : {type: String, require:true},
     premium : {type: Number, require:true},
     productTerm : {type: Number},
-    productType : {type: String, enum:["Term Life","Whole Life"]},
     prodDesc : {type: String},
-    expiryAge: {type: Number},
     faceAmtMax: Number,
-    faceAmtMin: Number,
     coverage: Number,
+    deductible: Number,
     dateCreated : {type: Date, default: Date.now()}
 }, {collection : "Product"});
 

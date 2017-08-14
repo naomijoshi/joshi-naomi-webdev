@@ -1,87 +1,133 @@
-<div class="container-fluid">
-    <div ng-hide="model.showProduct" class="panel-group" id="accordion">
-        <div class="panel panel-success">  <!-- accordion 2 -->
+<div ng-hide="model.showProduct" class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <label><h3>Find Insurance plan</h3></label>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-success">  <!-- accordion 2 -->
 
-            <div class="panel-heading">
-                <h4 class="panel-title">What is your annual income? </h4>
-            </div>
-            <div class="panel-body black">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                    <input type="number" class="form-control" id="income" placeholder="income" ng-model="model.questions.income">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">What is your annual income? </h4>
+                    </div>
+                    <div class="panel-body black">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                            <input type="number" class="form-control" id="income" placeholder="income" ng-model="model.questions.income">
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="panel panel-success">-->
+
+                    <!--<div class="panel-heading">-->
+                        <!--<h4 class="panel-title">How much savings/investments do you have? </h4>-->
+                    <!--</div>-->
+                    <!--<div class="panel-body black">-->
+                        <!--<div class="input-group">-->
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>-->
+                            <!--<input type="number" class="form-control" id="savings" placeholder="savings" ng-model="model.questions.savings">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="panel panel-success">-->
+
+                    <!--<div class="panel-heading">-->
+                        <!--<h4 class="panel-title">How many members does your household consists of? </h4>-->
+                    <!--</div>-->
+                    <!--<div class="panel-body black">-->
+                        <!--<input type="number" class="form-control" id="householdNo" placeholder="household" ng-model="model.questions.householdNo">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="panel panel-success">  <!-- accordion 2 -->
+
+                    <div class="panel-heading">
+                        <h4 class="panel-title">What is your family's average monthly expense? </h4>
+                    </div>
+                    <div class="panel-body black">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                            <input type="number" class="form-control" id="expense" placeholder="monthly expense" ng-model="model.questions.expense">
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="panel panel-success">  &lt;!&ndash; accordion 2 &ndash;&gt;-->
+
+                    <!--<div class="panel-heading">-->
+                        <!--<h4 class="panel-title">Do you have any debts? </h4>-->
+                    <!--</div>-->
+                    <!--<div class="panel-body black">-->
+                        <!--<div class="input-group">-->
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>-->
+                            <!--<input type="number" class="form-control" id="debts" placeholder="debts" ng-model="model.questions.debts">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="panel panel-success">  <!-- accordion 2 -->
+
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Have you used tobacco, nicotine or any nicotine substitution products in any form in the last 5 years? </h4>
+                    </div>
+                    <div class="panel-body black">
+                        <div class="radio">
+                            <label class=".radio-inline"><input type="radio" ng-model="model.questions.tobacco" value="true" name="tobacco">Yes</label>
+                            <label class=".radio-inline"><input type="radio" ng-model="model.questions.tobacco" value="false" name="tobacco">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-pad">
+                    <button ng-click="model.findRecommendedProduct(model.questions)" class="btn btn-success">Get a Price</button>
+                    <a href="#!/dashboard" class="btn btn-success">
+                        <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+                        Back
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="panel panel-success">
-
-            <div class="panel-heading">
-                <h4 class="panel-title">How much savings/investments do you have? </h4>
-            </div>
-            <div class="panel-body black">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                    <input type="number" class="form-control" id="savings" placeholder="savings" ng-model="model.questions.savings">
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-success">
-
-            <div class="panel-heading">
-                <h4 class="panel-title">How many members does your household consists of? </h4>
-            </div>
-            <div class="panel-body black">
-                <input type="number" class="form-control" id="householdNo" placeholder="household" ng-model="model.questions.householdNo">
-            </div>
-        </div>
-        <div class="panel panel-success">  <!-- accordion 2 -->
-
-            <div class="panel-heading">
-                <h4 class="panel-title">What is your family's average monthly expense? </h4>
-            </div>
-            <div class="panel-body black">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                    <input type="number" class="form-control" id="expense" placeholder="monthly expense" ng-model="model.questions.expense">
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-success">  <!-- accordion 2 -->
-
-            <div class="panel-heading">
-                <h4 class="panel-title">Do you have any debts? </h4>
-            </div>
-            <div class="panel-body black">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                    <input type="number" class="form-control" id="debts" placeholder="debts" ng-model="model.questions.debts">
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-success">  <!-- accordion 2 -->
-
-            <div class="panel-heading">
-                <h4 class="panel-title">Have you used tobacco, nicotine or any nicotine substitution products in any form in the last 5 years? </h4>
-            </div>
-            <div class="panel-body black">
-                <input type="checkbox" checked data-toggle="toggle" ng-model="model.questions.tobacco">
-            </div>
-        </div>
-        <div class="custom-pad">
-            <button ng-click="model.findRecommendedProduct(model.questions)" class="btn btn-success">Get a Price</button>
         </div>
     </div>
-    <div ng-show="model.showProduct" class="panel-group" id="showproduct">
-        <div class="panel panel-success">  <!-- accordion 2 -->
+</div>
+<div ng-show="model.showProduct" class="panel-group" id="showproduct">
+    <div class="container content">
+        <div class="row">
+            <!-- Pricing -->
+            <div ng-repeat="product in model.products" class="col-md-3">
+                <div class="pricing hover-effect">
+                    <div class="pricing-head">
+                        <h3>{{product.productTitle}} <span>
+					 </span>
+                        </h3>
+                        <h4><i>$</i>{{product.premium}}
+                            <span>
+					Per Month </span>
+                        </h4>
+                    </div>
+                    <ul class="pricing-content list-unstyled">
+                        <li>
+                            Product Term: {{product.productTerm}} months
+                        </li>
+                        <li>
+                            Coverage: ${{product.coverage}}
+                        </li>
+                        <li>
+                            Deductible: ${{product.deductible}}
+                        </li>
+                        <li>
+                            Annual max: ${{product.faceAmtMax}}
+                        </li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <p>
+                            {{product.prodDesc}}
+                        </p>
+                        <a href="#!/application" class="btn yellow-crusta">
+                            Buy
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-            <div class="panel-heading">
-                Recommended Product
-            </div>
-            <div class="panel-body black">
-                {{model.showProduct}}
-            </div>
-        </div>
-        <div class="custom-pad">
-            <button class="btn btn-success">Buy</button>
+            <!--//End Pricing -->
         </div>
     </div>
+    <!--<div class="custom-pad">-->
+        <!--<button href="#!/application" ng-show="currentUser" class="btn btn-success">Buy</button>-->
+        <!--<button href="#!/" ng-hide="currentUser" class="btn btn-success">Buy</button>-->
+    <!--</div>-->
 </div>
