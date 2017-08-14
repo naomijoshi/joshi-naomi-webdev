@@ -144,7 +144,7 @@
             if (user){
                 userService.unregister()
                     .then(function (response) {
-                        $location.url("/");
+                        $location.url("/dashboard");
                     });
             }
         };

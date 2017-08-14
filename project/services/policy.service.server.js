@@ -169,7 +169,7 @@ function initiateDocusign(data, req, resParent){
 				        "recipientId": "1",
 				        "clientUserId": "1234",
 				        "authenticationMethod": "email",
-				        "returnUrl": "http://localhost:3000/project/index.html#!/dashboard" //TODO
+				        "returnUrl": "https://joshi-naomi-webdev.herokuapp.com/project/index.html#!/dashboard" //TODO
 			        };
 			        return request.post({
 				        url : baseUrl + "/envelopes/" + body.envelopeId + "/views/recipient",
