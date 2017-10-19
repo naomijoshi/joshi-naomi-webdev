@@ -1,6 +1,6 @@
 # web-dev-template
 
-I am a Graduate student at Northeastern University. Currently pursuing a co-op at New York Life Insurance Company. My primary areas of interest are cloud computing and software development - primarily backend development.
+I am a Graduate student at Northeastern University. Recently finished my co-op at New York Life Insurance Company. My primary areas of interest are cloud computing and software development - primarily backend development.
 
 1. git clone https://github.com/naomijoshi/joshi-naomi-webdev.git
 2. cd joshi-naomi-webdev
@@ -11,3 +11,5 @@ I am a Graduate student at Northeastern University. Currently pursuing a co-op a
 
 Project URL:
 https://joshi-naomi-webdev.herokuapp.com
+
+# Please visit the wiki page for this repository for more details on this project
